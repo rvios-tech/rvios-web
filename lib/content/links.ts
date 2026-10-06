@@ -7,5 +7,5 @@
  */
 const trim = (u: string) => u.replace(/\/+$/, "");
 
-export const STOREOS_URL = trim(process.env.NEXT_PUBLIC_STOREOS_URL ?? "http://localhost:3011");
-export const AZMSMART_URL = trim(process.env.NEXT_PUBLIC_AZMSMART_URL ?? "http://localhost:3001");
+export const STOREOS_URL = trim(process.env.NEXT_PUBLIC_STOREOS_URL ?? "http://store.rvios.com");
+export const AZMSMART_URL = trim(process.env.NEXT_PUBLIC_AZMSMART_URL ?? "http://azm.rvios.com");
