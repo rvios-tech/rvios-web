@@ -58,7 +58,7 @@ export function Closing({ lines, light }: { lines?: string[]; light?: string }) 
             </div>
           </footer>
           <div className="mt-10 flex flex-wrap justify-between gap-3 text-[12px] text-ivory/40">
-            <span>© {new Date().getFullYear()} RVIOS Technologies — {siteText[lang].city}</span>
+            <span>© {new Date().getFullYear()} RVIOS Technologies</span>
             <span className="flex gap-5">{site.social.map((s) => <a key={s.label} href={s.href} target="_blank" rel="noopener" className="latin hover:text-ivory">{s.label}</a>)}</span>
           </div>
         </div>

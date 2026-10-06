@@ -3,7 +3,7 @@ import { Lines, Rise } from "@/components/ui/motion";
 import { ContactForm } from "@/components/contact/ContactForm";
 import { Faq } from "@/components/ui/Faq";
 import type { StageCfg } from "@/lib/stage/glass";
-import { site, siteText, waLink } from "@/lib/content/site";
+import { site, waLink } from "@/lib/content/site";
 import type { Lang } from "@/lib/i18n/config";
 
 // الشعار يتوهج خلف النموذج الزجاجي
@@ -13,7 +13,7 @@ const T = {
   ar: {
     label: "تواصل معنا", head: ["لنبدأ", "الحديث."],
     lead: "أخبرنا عن مشروعك، وسنعود إليك خلال يوم عمل واحد بتصور أولي واضح.",
-    email: "البريد الإلكتروني", wa: "واتساب", hq: "المقر",
+    email: "البريد الإلكتروني", wa: "واتساب",
     faqLabel: "قبل أن تراسلنا", faqHead: ["أسئلة", "شائعة."],
     faq: [
       { q: "ماذا يحدث بعد إرسال الطلب؟", a: "نراجع طلبك ونتواصل معك خلال يوم عمل لتحديد جلسة قصيرة نفهم فيها مشروعك، ثم نرسل تصوراً أولياً وعرضاً مفصلاً." },
@@ -24,7 +24,7 @@ const T = {
   en: {
     label: "Contact", head: ["Let's start", "talking."],
     lead: "Tell us about your project and we'll get back to you within one business day with a clear initial outline.",
-    email: "Email", wa: "WhatsApp", hq: "Based in",
+    email: "Email", wa: "WhatsApp",
     faqLabel: "Before you write", faqHead: ["Frequently", "asked."],
     faq: [
       { q: "What happens after I send a request?", a: "We review it and reach out within a business day to book a short session to understand your project, then send an initial outline and a detailed proposal." },
@@ -40,7 +40,6 @@ export function ContactView({ topic, lang }: { topic?: string; lang: Lang }) {
   const channels = [
     { k: t.email, v: site.email, href: `mailto:${site.email}`, latin: true },
     { k: t.wa, v: site.whatsappDisplay, href: waLink(lang), latin: true },
-    { k: t.hq, v: siteText[lang].city },
   ];
   return (
     <>
