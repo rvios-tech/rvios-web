@@ -27,7 +27,7 @@ export async function POST(req: Request) {
       headers: { Authorization: `Bearer ${key}`, "Content-Type": "application/json" },
       body: JSON.stringify({
         from: "RVIOS Website <noreply@rvios.com>",
-        to: [process.env.CONTACT_TO_EMAIL || "hello@rvios.com"],
+        to: [process.env.CONTACT_TO_EMAIL || "rviostech@gmail.com"],
         reply_to: data.email,
         subject: `طلب جديد من ${data.name} — ${labels}`,
         text,

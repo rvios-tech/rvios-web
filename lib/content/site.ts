@@ -5,7 +5,7 @@ export const site = {
   name: "RVIOS Technologies",
   short: "RVIOS",
   url: "https://rvios.com",
-  email: "hello@rvios.com",
+  email: "rviostech@gmail.com",
   whatsapp: "967739008083",
   whatsappDisplay: "+967 739 008 083",
   social: [
