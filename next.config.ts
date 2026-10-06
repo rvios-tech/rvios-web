@@ -1,5 +1,10 @@
 import type { NextConfig } from "next";
-import { AZMSMART_URL, STOREOS_URL } from "./lib/content/links";
+
+/* القيم مُعرَّفة هنا مباشرةً لأن next.config.ts يُجمَّع منفصلاً عن المشروع
+   ولا يستطيع حلّ imports داخلية من lib/‏. المصدر الأصلي: lib/content/links.ts */
+const trim = (u: string) => u.replace(/\/+$/, "");
+const STOREOS_URL = trim(process.env.NEXT_PUBLIC_STOREOS_URL ?? "http://store.rvios.com");
+const AZMSMART_URL = trim(process.env.NEXT_PUBLIC_AZMSMART_URL ?? "http://azm.rvios.com");
 
 const nextConfig: NextConfig = {
   /**
