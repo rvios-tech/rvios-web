@@ -18,7 +18,6 @@ const T = {
     lead: "نصمّم ونطوّر المواقع الإلكترونية والأنظمة والمتاجر وصفحات الهبوط، ونبني منتجاتنا الخاصة لإدارة الأعمال والتجارة.",
     cta: "ابدأ مشروعك",
     alt: "شاهد أعمالنا",
-    cities: "صنعاء — الرياض — الدمام",
     scroll: "مرّر للاكتشاف",
     tap: "انقر على الشاشة للتبديل",
     caps: [
@@ -34,7 +33,6 @@ const T = {
     lead: "We design and develop websites, web systems, online stores and landing pages — and build our own products for business and commerce.",
     cta: "Start a project",
     alt: "See our work",
-    cities: "Sana'a — Riyadh — Dammam",
     scroll: "Scroll to explore",
     tap: "Tap the screen to switch",
     caps: [
@@ -137,7 +135,6 @@ export function HomeHero() {
 
         <div data-foot className="absolute inset-x-0 bottom-0 hidden px-[var(--pad)] pb-[max(3.5vh,20px)] lg:block">
           <div className="mx-auto flex max-w-[1480px] items-center gap-6 text-[12px] text-ivory/50">
-            <span data-rise>{t.cities}</span>
             <i data-line className="h-px flex-1 origin-[var(--o)] bg-ivory/15 [--o:right] ltr:[--o:left]" />
             <span data-rise>{t.tap}</span>
             <span data-rise className="flex items-center gap-3">
