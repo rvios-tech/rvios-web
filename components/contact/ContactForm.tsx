@@ -3,6 +3,7 @@ import { useState, type FormEvent } from "react";
 import { budgetsOf, timelinesOf, topicsOf, validate, type ContactInput } from "@/lib/contact";
 import { waLink } from "@/lib/content/site";
 import { useLang } from "@/components/i18n/LangProvider";
+import { UNIFIED_API_URL } from "@/lib/content/links";
 
 const T = {
   ar: { doneLabel: "وصلت رسالتك", thanks: "شكراً لك.", doneText: "سنراجع طلبك ونعود إليك خلال يوم عمل واحد بتصور أولي. وإن كان الأمر عاجلاً، راسلنا مباشرة على واتساب.", wa: "راسلنا على واتساب", help: "بماذا نساعدك؟", multi: "(يمكن اختيار أكثر من واحد)", name: "الاسم *", namePh: "اسمك الكامل", company: "الشركة", companyPh: "اسم الشركة أو العلامة", email: "البريد الإلكتروني *", phone: "واتساب أو الهاتف", budget: "الميزانية التقريبية", when: "متى تريد البدء؟", msg: "حدّثنا عن مشروعك *", msgPh: "ما الذي تريد بناءه؟ من هم عملاؤك؟ وما الذي يعيقك اليوم؟", note: "نرد خلال يوم عمل واحد. بياناتك لا تُشارك مع أي طرف.", sending: "جارٍ الإرسال…", send: "أرسل الطلب", fail: "تعذر الإرسال. حاول مرة أخرى، أو راسلنا على واتساب." },
@@ -33,8 +34,29 @@ export function ContactForm({ initial }: { initial?: string }) {
     const errs = validate(data, lang);
     setErrors(errs);
     if (Object.keys(errs).length) return;
+    if (data.website) { setState("done"); return; } // حقل مخفي لصد الرسائل الآلية
     setState("sending");
     try {
+      if (UNIFIED_API_URL) {
+        // صندوق رسائل الموقع في AzmSmart — من المتصفح مباشرةً كي يرى حدّ المعدّل عنوان الزائر
+        const labels = data.topics.map((v) => topics.find((x) => x.value === v)?.label ?? v).join("، ");
+        const message = [
+          data.message.trim(),
+          "",
+          data.company ? `${lang === "ar" ? "الشركة" : "Company"}: ${data.company}` : "",
+          data.budget ? `${lang === "ar" ? "الميزانية" : "Budget"}: ${data.budget}` : "",
+          data.timeline ? `${lang === "ar" ? "البدء" : "Start"}: ${data.timeline}` : "",
+        ].filter((l, i) => l || i === 1).join("\n").trim();
+        const r = await fetch(`${UNIFIED_API_URL}/cms/contacts/public`, {
+          method: "POST", headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ name: data.name.trim(), email: data.email.trim(), phone: data.phone?.trim() || undefined, service: labels.slice(0, 160), message: message.slice(0, 4000) }),
+        });
+        if (!r.ok) { setState("error"); return; }
+        // إشعار البريد (Resend) اختياري — لا يُفشل الإرسال إن تعذّر
+        fetch("/api/contact", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(data) }).catch(() => {});
+        setState("done");
+        return;
+      }
       const r = await fetch("/api/contact", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(data) });
       const j = await r.json();
       if (!r.ok || !j.ok) { setErrors(j.errors ?? {}); setState("error"); return; }
@@ -66,7 +88,7 @@ export function ContactForm({ initial }: { initial?: string }) {
         <div className="field"><label htmlFor="name">{t.name}</label><input id="name" name="name" autoComplete="name" placeholder={t.namePh} aria-invalid={!!errors.name} />{errors.name && <span className="err">{errors.name}</span>}</div>
         <div className="field"><label htmlFor="company">{t.company}</label><input id="company" name="company" autoComplete="organization" placeholder={t.companyPh} /></div>
         <div className="field"><label htmlFor="email">{t.email}</label><input id="email" name="email" type="email" dir="ltr" autoComplete="email" placeholder="you@company.com" className="rtl:text-end" aria-invalid={!!errors.email} />{errors.email && <span className="err">{errors.email}</span>}</div>
-        <div className="field"><label htmlFor="phone">{t.phone}</label><input id="phone" name="phone" type="tel" dir="ltr" autoComplete="tel" placeholder="+967" className="rtl:text-end" /></div>
+        <div className="field"><label htmlFor="phone">{t.phone}</label><input id="phone" name="phone" type="tel" dir="ltr" autoComplete="tel" placeholder="+966" className="rtl:text-end" /></div>
       </div>
 
       <div className="grid gap-8 md:grid-cols-2">

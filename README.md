@@ -17,7 +17,7 @@ npm run build && npm start
   - ZainMobileSwashes-VF: العناوين العربية الكبيرة (مع حركة محور الكشائد `long`)
   - ThmanyahSerifText: النصوص (عربي وإنجليزي)
   - YapariTrial-Bold: العناوين الإنجليزية الكبيرة — **نسخة تجريبية؛ يلزم شراء الترخيص قبل الاستخدام التجاري**
-- **المحتوى**: خمس خدمات بصيغتيها الكاملة والمختصرة، صفحة جديدة `/storeos`، إعادة تسمية RVIOS Shop إلى RVIOS StoreOS، رقم التواصل ‎+967 739 008 083.
+- **المحتوى**: خمس خدمات بصيغتيها الكاملة والمختصرة، صفحة جديدة `/storeos`، إعادة تسمية RVIOS Shop إلى RVIOS StoreOS، رقم التواصل ‎+966 551341301.
 
 ## أين أعدّل المحتوى
 | المحتوى | العربية | الإنجليزية |
@@ -36,8 +36,9 @@ AzmSmart وRVIOS StoreOS لكلٍّ منهما موقعه: روابطهما في
 
 | المتغيّر | الافتراض (تطوير) | ماذا |
 |---|---|---|
-| `NEXT_PUBLIC_AZMSMART_URL` | `http://localhost:3001` | AzmSmart — صفحته الترحيبية في النظام نفسه (نُقلت من هذا الموقع) |
-| `NEXT_PUBLIC_STOREOS_URL` | `http://localhost:3011` | واجهة منصة المتاجر RVIOS StoreOS |
+| `NEXT_PUBLIC_AZMSMART_URL` | `http://azm.rvios.com` | AzmSmart — صفحته الترحيبية في النظام نفسه (نُقلت من هذا الموقع) |
+| `NEXT_PUBLIC_STOREOS_URL` | `http://store.rvios.com` | واجهة منصة المتاجر RVIOS StoreOS |
 
 ## نموذج التواصل
+يُرسَل من المتصفح إلى صندوق رسائل الموقع في AzmSmart عبر الباكند الموحّد حين يُضبط `NEXT_PUBLIC_UNIFIED_API_URL` (مثل `http://localhost:3002/api/v1`، وأصل الموقع في `CORS_ORIGINS` هناك)، ويبقى إشعار البريد أدناه اختياريًا بجانبه. بدون المتغيّر يعمل كما كان:
 `app/api/contact/route.ts` — يرسل عبر Resend إذا أضفت `RESEND_API_KEY` (و`CONTACT_TO_EMAIL` اختيارياً)، وإلا يطبع الطلب في سجل الخادم.

@@ -17,7 +17,7 @@ const T = {
     faqLabel: "قبل أن تراسلنا", faqHead: ["أسئلة", "شائعة."],
     faq: [
       { q: "ماذا يحدث بعد إرسال الطلب؟", a: "نراجع طلبك ونتواصل معك خلال يوم عمل لتحديد جلسة قصيرة نفهم فيها مشروعك، ثم نرسل تصوراً أولياً وعرضاً مفصلاً." },
-      { q: "هل تعملون مع عملاء خارج اليمن؟", a: "نعم. نعمل عن بُعد مع عملاء في اليمن والمملكة العربية السعودية وغيرها، ونتواصل عبر الاجتماعات المرئية." },
+      { q: "هل تعملون مع عملاء خارج المملكة؟", a: "نعم. نعمل عن بُعد مع عملاء في المملكة العربية السعودية ومختلف الدول، ونتواصل عبر الاجتماعات المرئية." },
       { q: "هل الجلسة الأولى مدفوعة؟", a: "جلسة فهم المشروع الأولى مجانية وبدون أي التزام." },
     ],
   },
@@ -28,7 +28,7 @@ const T = {
     faqLabel: "Before you write", faqHead: ["Frequently", "asked."],
     faq: [
       { q: "What happens after I send a request?", a: "We review it and reach out within a business day to book a short session to understand your project, then send an initial outline and a detailed proposal." },
-      { q: "Do you work with clients outside Yemen?", a: "Yes. We work remotely with clients in Yemen, Saudi Arabia and beyond, meeting over video calls." },
+      { q: "Do you work with clients outside Saudi Arabia?", a: "Yes. We work remotely with clients across Saudi Arabia and beyond, meeting over video calls." },
       { q: "Is the first session paid?", a: "The first discovery session is free, with no commitment." },
     ],
   },

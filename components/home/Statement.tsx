@@ -14,7 +14,7 @@ const T = {
       { t: "هندسة تدوم", d: "كود نظيف وآمن وقابل للتوسع، لا يُعاد بناؤه بعد عام." },
       { t: "شراكة بعد الإطلاق", d: "صيانة وتطوير مستمر، وفريق تعرفه ويعرف مشروعك." },
     ],
-    where: "نعمل مع شركات وعلامات في اليمن والمملكة العربية السعودية.",
+    where: "نعمل مع شركات وعلامات رائدة في المملكة العربية السعودية ومختلف الدول.",
     link: "شاهد الأعمال",
   },
   en: {
@@ -26,7 +26,7 @@ const T = {
       { t: "Engineering that lasts", d: "Clean, secure, scalable code that won't need rebuilding in a year." },
       { t: "Partners after launch", d: "Ongoing maintenance and growth, by a team that knows your product." },
     ],
-    where: "We work with companies and brands across Yemen and Saudi Arabia.",
+    where: "We work with leading companies and brands across Saudi Arabia and beyond.",
     link: "See our work",
   },
 };
