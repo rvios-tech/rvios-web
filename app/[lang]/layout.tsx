@@ -1,5 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
+import Script from "next/script";
+import { GA_IDS, analyticsOn, gtagInit } from "@/lib/content/analytics";
 import { notFound } from "next/navigation";
 import "../globals.css";
 import { Stage } from "@/components/stage/Stage";
@@ -8,7 +10,7 @@ import { Header } from "@/components/layout/Header";
 import { Preloader } from "@/components/layout/Preloader";
 import { LangProvider } from "@/components/i18n/LangProvider";
 import { site, siteText } from "@/lib/content/site";
-import { regionCss, regionScript } from "@/lib/content/contact";
+import { CONTACTS, regionCss, regionScript } from "@/lib/content/contact";
 import { dirOf, hasLocale, locales } from "@/lib/i18n/config";
 
 /** خط العناوين العربية الكبيرة — متغير بمحور «long» لامتداد الكشائد */
@@ -37,7 +39,8 @@ export async function generateMetadata({ params }: LayoutProps<"/[lang]">): Prom
     title: { default: `${site.name} — ${t.tagline}`, template: `%s | ${site.short}` },
     description: t.description,
     openGraph: { type: "website", locale: lang === "ar" ? "ar_YE" : "en_US", siteName: site.name, title: site.name, description: t.description },
-    alternates: { canonical: `/${lang}`, languages: { ar: "/ar", en: "/en" } },
+    twitter: { card: "summary_large_image", title: site.name, description: t.description },
+    alternates: { canonical: `/${lang}`, languages: { ar: "/ar", en: "/en", "x-default": "/ar" } },
   };
 }
 
@@ -51,6 +54,25 @@ export const viewport: Viewport = {
 /** يضبط الثيم قبل الرسم الأول لمنع الوميض */
 const themeScript = `try{var t=localStorage.getItem('rv-theme');document.documentElement.dataset.theme=(t==='light'||t==='dark')?t:'dark'}catch(e){document.documentElement.dataset.theme='dark'}`;
 
+/**
+ * بيانات المنظمة لمحرّكات البحث — الرقمان معًا، كلٌّ بدولته (`areaServed`)، كما يعرضهما
+ * الموقع لزوّار كل دولة. `<` مهرَّب فلا يغلق نصٌّ وسم السكربت.
+ */
+const orgJsonLd = (lang: "ar" | "en") =>
+  JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: site.name,
+    url: `${site.url}/${lang}`,
+    logo: `${site.url}/${lang}/opengraph-image.png`,
+    email: site.email,
+    sameAs: site.social.map((s) => s.href),
+    contactPoint: [
+      { "@type": "ContactPoint", contactType: "customer service", telephone: `+${CONTACTS.sa.whatsapp}`, areaServed: "SA", availableLanguage: ["ar", "en"] },
+      { "@type": "ContactPoint", contactType: "customer service", telephone: `+${CONTACTS.ye.whatsapp}`, areaServed: "YE", availableLanguage: ["ar", "en"] },
+    ],
+  }).replace(/</g, "\\u003c");
+
 export default async function RootLayout({ children, params }: LayoutProps<"/[lang]">) {
   const { lang } = await params;
   if (!hasLocale(lang)) notFound();
@@ -61,8 +83,15 @@ export default async function RootLayout({ children, params }: LayoutProps<"/[la
         {/* منطقة الزائر (رقم التواصل) قبل الرسم الأول — lib/content/contact.ts */}
         <script dangerouslySetInnerHTML={{ __html: regionScript }} />
         <style dangerouslySetInnerHTML={{ __html: regionCss }} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: orgJsonLd(lang) }} />
       </head>
       <body>
+        {analyticsOn && (
+          <>
+            <Script src={`https://www.googletagmanager.com/gtag/js?id=${GA_IDS[0]}`} strategy="afterInteractive" />
+            <Script id="gtag-init" strategy="afterInteractive">{gtagInit()}</Script>
+          </>
+        )}
         <LangProvider lang={lang}>
           <Stage />
           <SmoothScroll />
