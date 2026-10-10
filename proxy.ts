@@ -17,7 +17,9 @@ function pick(req: NextRequest): Lang {
  * Vercel ثم Cloudflare ثم CloudFront، و`x-country-code` لوسيط آخر يضبطه.
  * `null` حين لا تتوفّر (تطوير محلي) فتبقى المنطقة المحفوظة أو الافتراضية.
  */
-const GEO_HEADERS = ["x-vercel-ip-country", "cf-ipcountry", "cloudfront-viewer-country", "x-country-code"];
+// cf-ipcountry أولًا: خلف وكيل Cloudflare يرى Vercel عنوان خادم Cloudflare لا الزائر، فترويسته
+// تصف موقع Cloudflare. ترويسة Cloudflare نفسها تصف الزائر، وتغيب حين لا وكيل فتُستعمل ترويسة Vercel.
+const GEO_HEADERS = ["cf-ipcountry", "x-vercel-ip-country", "cloudfront-viewer-country", "x-country-code"];
 function countryOf(req: NextRequest): string | null {
   for (const h of GEO_HEADERS) {
     const v = req.headers.get(h);
