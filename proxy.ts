@@ -47,7 +47,7 @@ function withRegion(req: NextRequest, res: NextResponse): NextResponse {
   const cc = countryOf(req);
   const region: Region | null = isRegion(asked) ? asked : isRegion(pinned) ? pinned : cc ? regionOfCountry(cc) : null;
   const geo = geoOf(req);
-  res.headers.set("x-rv-geo", `${geo ? `${geo.cc}:${geo.via}` : "none"}${isRegion(pinned) ? ` pinned:${pinned}` : ""} → ${region ?? "default"}`);
+  res.headers.set("x-rv-geo", `${geo ? `${geo.cc}:${geo.via}` : "none"}${isRegion(pinned) ? ` pinned:${pinned}` : ""} -> ${region ?? "default"}`); // ASCII only: header values reject characters above 255 (an arrow crashed every request)
   // لا Set-Cookie ما لم تتغيّر القيمة: استجابة بلا كوكي تبقى قابلة للتخزين عند أي CDN
   if (region && req.cookies.get(REGION_COOKIE)?.value !== region) {
     res.cookies.set(REGION_COOKIE, region, { path: "/", maxAge: 60 * 60 * 24 * 30, sameSite: "lax", secure });
