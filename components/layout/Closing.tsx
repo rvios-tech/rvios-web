@@ -6,6 +6,8 @@ import { L } from "@/components/i18n/L";
 import { useLang } from "@/components/i18n/LangProvider";
 import type { StageCfg } from "@/lib/stage/glass";
 import { navOf, site, siteText, waLink } from "@/lib/content/site";
+import { waHref } from "@/lib/content/contact";
+import { ByRegion } from "@/components/region/ByRegion";
 import { content } from "@/lib/content";
 
 const T = {
@@ -28,7 +30,7 @@ export function Closing({ lines, light }: { lines?: string[]; light?: string }) 
             <Lines as="h2" className="h1 text-center" lines={lines ?? t.lines} />
             <Rise className="mt-12 flex flex-wrap items-center justify-center gap-3">
               <L data-rise href="/contact" className="btn btn-ruby">{t.cta}</L>
-              <a data-rise href={waLink(lang)} target="_blank" rel="noopener" className="btn">{t.wa}</a>
+              <ByRegion>{(c) => <a data-rise href={waLink(c, lang)} target="_blank" rel="noopener" className="btn">{t.wa}</a>}</ByRegion>
             </Rise>
             <p className="mt-8 text-center">
               <a href={`mailto:${site.email}`} className="link-line latin text-lg text-mist hover:text-ivory">{site.email}</a>
@@ -42,7 +44,14 @@ export function Closing({ lines, light }: { lines?: string[]; light?: string }) 
             <div>
               <Lockup />
               <p className="mt-5 max-w-[30ch] text-mist">{siteText[lang].tagline}</p>
-              <a href={`https://wa.me/${site.whatsapp}`} target="_blank" rel="noopener" className="latin mt-4 inline-block text-mist transition-colors hover:text-ivory" dir="ltr">{site.whatsappDisplay}</a>
+              <ByRegion>
+                {(c) => (
+                  <>
+                    <a href={waHref(c)} target="_blank" rel="noopener" className="latin mt-4 inline-block text-mist transition-colors hover:text-ivory" dir="ltr">{c.display}</a>
+                    <span className="mt-1 block text-mist">{c.location[lang]}</span>
+                  </>
+                )}
+              </ByRegion>
             </div>
             <div>
               <b className="mb-3 block text-[13px] font-medium text-gold">{t.services}</b>

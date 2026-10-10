@@ -8,6 +8,7 @@ import { Header } from "@/components/layout/Header";
 import { Preloader } from "@/components/layout/Preloader";
 import { LangProvider } from "@/components/i18n/LangProvider";
 import { site, siteText } from "@/lib/content/site";
+import { regionCss, regionScript } from "@/lib/content/contact";
 import { dirOf, hasLocale, locales } from "@/lib/i18n/config";
 
 /** خط العناوين العربية الكبيرة — متغير بمحور «long» لامتداد الكشائد */
@@ -57,6 +58,9 @@ export default async function RootLayout({ children, params }: LayoutProps<"/[la
     <html lang={lang} dir={dirOf(lang)} data-theme="dark" suppressHydrationWarning className={`${zain.variable} ${yapari.variable} ${thm.variable}`}>
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+        {/* منطقة الزائر (رقم التواصل) قبل الرسم الأول — lib/content/contact.ts */}
+        <script dangerouslySetInnerHTML={{ __html: regionScript }} />
+        <style dangerouslySetInnerHTML={{ __html: regionCss }} />
       </head>
       <body>
         <LangProvider lang={lang}>

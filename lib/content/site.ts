@@ -1,4 +1,5 @@
 import { AZMSMART_URL, STOREOS_URL } from "./links";
+import { waHref, type RegionContact } from "./contact";
 import type { Lang } from "@/lib/i18n/config";
 
 export const site = {
@@ -6,8 +7,7 @@ export const site = {
   short: "RVIOS",
   url: "https://rvios.com",
   email: "rviostech@gmail.com",
-  whatsapp: "966551341301",
-  whatsappDisplay: "+966 551341301",
+  // الرقم وواتساب والعنوان حسب دولة الزائر: lib/content/contact.ts
   social: [
     { label: "Instagram", href: "https://instagram.com/0xo_0o" },
     { label: "LinkedIn", href: "https://www.linkedin.com/in/rayash-albureihi-0ba32a404" },
@@ -19,14 +19,12 @@ export const siteText = {
     tagline: "نبني الأنظمة. نطوّر الحلول. نمكّن الأعمال.",
     description:
       "RVIOS Technologies — نصمّم ونطوّر المواقع الإلكترونية والأنظمة وتطبيقات الويب والمتاجر الإلكترونية وصفحات الهبوط، ونتولى صيانتها وتطويرها. ومن منتجاتنا RVIOS StoreOS وAzmSmart وAZM.",
-    city: "المملكة العربية السعودية",
     wa: "مرحباً RVIOS، أود الحديث عن مشروع",
   },
   en: {
     tagline: "We build systems. We engineer solutions. We empower businesses.",
     description:
       "RVIOS Technologies designs and develops websites, web systems and apps, online stores and landing pages — and keeps them maintained and growing. Our products include RVIOS StoreOS, AzmSmart and AZM.",
-    city: "Saudi Arabia",
     wa: "Hello RVIOS, I'd like to talk about a project",
   },
 } satisfies Record<Lang, Record<string, string>>;
@@ -49,5 +47,5 @@ export const navOf = (lang: Lang) => {
   ];
 };
 
-export const waLink = (lang: Lang, text?: string) =>
-  `https://wa.me/${site.whatsapp}?text=${encodeURIComponent(text ?? siteText[lang].wa)}`;
+/** رابط واتساب برسالة افتتاحية — `c` من `<ByRegion>` فيتبع الرابطُ الرقمَ المعروض */
+export const waLink = (c: RegionContact, lang: Lang, text?: string) => waHref(c, text ?? siteText[lang].wa);

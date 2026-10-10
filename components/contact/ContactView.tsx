@@ -4,6 +4,7 @@ import { ContactForm } from "@/components/contact/ContactForm";
 import { Faq } from "@/components/ui/Faq";
 import type { StageCfg } from "@/lib/stage/glass";
 import { site, waLink } from "@/lib/content/site";
+import { ByRegion } from "@/components/region/ByRegion";
 import type { Lang } from "@/lib/i18n/config";
 
 // الشعار يتوهج خلف النموذج الزجاجي
@@ -13,7 +14,7 @@ const T = {
   ar: {
     label: "تواصل معنا", head: ["لنبدأ", "الحديث."],
     lead: "أخبرنا عن مشروعك، وسنعود إليك خلال يوم عمل واحد بتصور أولي واضح.",
-    email: "البريد الإلكتروني", wa: "واتساب",
+    email: "البريد الإلكتروني", wa: "واتساب", location: "الموقع",
     faqLabel: "قبل أن تراسلنا", faqHead: ["أسئلة", "شائعة."],
     faq: [
       { q: "ماذا يحدث بعد إرسال الطلب؟", a: "نراجع طلبك ونتواصل معك خلال يوم عمل لتحديد جلسة قصيرة نفهم فيها مشروعك، ثم نرسل تصوراً أولياً وعرضاً مفصلاً." },
@@ -24,7 +25,7 @@ const T = {
   en: {
     label: "Contact", head: ["Let's start", "talking."],
     lead: "Tell us about your project and we'll get back to you within one business day with a clear initial outline.",
-    email: "Email", wa: "WhatsApp",
+    email: "Email", wa: "WhatsApp", location: "Location",
     faqLabel: "Before you write", faqHead: ["Frequently", "asked."],
     faq: [
       { q: "What happens after I send a request?", a: "We review it and reach out within a business day to book a short session to understand your project, then send an initial outline and a detailed proposal." },
@@ -38,8 +39,10 @@ export function ContactView({ topic, lang }: { topic?: string; lang: Lang }) {
   const t = T[lang];
   const faq = t.faq;
   const channels = [
-    { k: t.email, v: site.email, href: `mailto:${site.email}`, latin: true },
-    { k: t.wa, v: site.whatsappDisplay, href: waLink(lang), latin: true },
+    { k: t.email, latin: true, body: <a className="link-line" href={`mailto:${site.email}`}>{site.email}</a> },
+    // الرقم والرابط في الكتلة نفسها — يتبدّلان معًا حسب دولة الزائر
+    { k: t.wa, latin: true, body: <ByRegion>{(c) => <a className="link-line" href={waLink(c, lang)} target="_blank" rel="noopener">{c.display}</a>}</ByRegion> },
+    { k: t.location, latin: false, body: <ByRegion>{(c) => c.location[lang]}</ByRegion> },
   ];
   return (
     <>
@@ -55,7 +58,7 @@ export function ContactView({ topic, lang }: { topic?: string; lang: Lang }) {
                   <div key={c.k} className="border-t border-hair pt-4">
                     <dt className="text-[13px] text-mist">{c.k}</dt>
                     <dd dir={c.latin ? "ltr" : undefined} className={`mt-1 text-[20px] ${c.latin ? "rtl:text-end" : ""}`}>
-                      {c.href ? <a className="link-line" href={c.href} target={c.href.startsWith("http") ? "_blank" : undefined} rel="noopener">{c.v}</a> : c.v}
+                      {c.body}
                     </dd>
                   </div>
                 ))}

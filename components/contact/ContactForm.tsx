@@ -2,6 +2,9 @@
 import { useState, type FormEvent } from "react";
 import { budgetsOf, timelinesOf, topicsOf, validate, type ContactInput } from "@/lib/contact";
 import { waLink } from "@/lib/content/site";
+import { CONTACTS } from "@/lib/content/contact";
+import { ByRegion } from "@/components/region/ByRegion";
+import { useRegion } from "@/components/region/useRegion";
 import { useLang } from "@/components/i18n/LangProvider";
 import { UNIFIED_API_URL } from "@/lib/content/links";
 
@@ -14,6 +17,7 @@ type Errors = Partial<Record<keyof ContactInput, string>>;
 
 export function ContactForm({ initial }: { initial?: string }) {
   const lang = useLang();
+  const region = useRegion();
   const t = T[lang];
   const topics = topicsOf(lang), budgets = budgetsOf(lang), timelines = timelinesOf(lang);
   const [sel, setSel] = useState<string[]>(initial && topicsOf(lang).some((x) => x.value === initial) ? [initial] : []);
@@ -70,7 +74,7 @@ export function ContactForm({ initial }: { initial?: string }) {
         <span className="label">{t.doneLabel}</span>
         <h2 className="h2 mt-6">{t.thanks}</h2>
         <p className="lead mt-5 max-w-[40ch] text-mist">{t.doneText}</p>
-        <a className="btn btn-ruby mt-9" href={waLink(lang)} target="_blank" rel="noopener">{t.wa}</a>
+        <ByRegion>{(c) => <a className="btn btn-ruby mt-9" href={waLink(c, lang)} target="_blank" rel="noopener">{t.wa}</a>}</ByRegion>
       </div>
     );
 
@@ -88,7 +92,7 @@ export function ContactForm({ initial }: { initial?: string }) {
         <div className="field"><label htmlFor="name">{t.name}</label><input id="name" name="name" autoComplete="name" placeholder={t.namePh} aria-invalid={!!errors.name} />{errors.name && <span className="err">{errors.name}</span>}</div>
         <div className="field"><label htmlFor="company">{t.company}</label><input id="company" name="company" autoComplete="organization" placeholder={t.companyPh} /></div>
         <div className="field"><label htmlFor="email">{t.email}</label><input id="email" name="email" type="email" dir="ltr" autoComplete="email" placeholder="you@company.com" className="rtl:text-end" aria-invalid={!!errors.email} />{errors.email && <span className="err">{errors.email}</span>}</div>
-        <div className="field"><label htmlFor="phone">{t.phone}</label><input id="phone" name="phone" type="tel" dir="ltr" autoComplete="tel" placeholder="+966" className="rtl:text-end" /></div>
+        <div className="field"><label htmlFor="phone">{t.phone}</label><input id="phone" name="phone" type="tel" dir="ltr" autoComplete="tel" placeholder={CONTACTS[region].phoneHint} className="rtl:text-end" /></div>
       </div>
 
       <div className="grid gap-8 md:grid-cols-2">

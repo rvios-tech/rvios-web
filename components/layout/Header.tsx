@@ -2,7 +2,8 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
-import { navOf, site, siteText } from "@/lib/content/site";
+import { navOf, site } from "@/lib/content/site";
+import { ByRegion } from "@/components/region/ByRegion";
 import { Lockup } from "@/components/ui/Logo";
 import { useLang } from "@/components/i18n/LangProvider";
 import { swapLang, withLang } from "@/lib/i18n/config";
@@ -155,7 +156,7 @@ export function Header() {
         <div className="grid gap-4 border-t border-hair pt-6 text-sm text-mist">
           <Link href={withLang(lang, "/contact")} className="btn btn-ruby justify-self-start">{t.cta}</Link>
           <a href={`mailto:${site.email}`} className="latin text-ivory">{site.email}</a>
-          <span>{siteText[lang].city}</span>
+          <ByRegion>{(c) => <span>{c.location[lang]}</span>}</ByRegion>
         </div>
       </div>
     </>
