@@ -2,13 +2,13 @@ import { NextResponse, type NextRequest } from "next/server";
 import { defaultLang, hasLocale, type Lang } from "@/lib/i18n/config";
 import { isRegion, regionOfCountry, REGION_COOKIE, REGION_PIN_COOKIE, type Region } from "@/lib/content/contact";
 
-/** يوجّه أي مسار بلا لغة إلى /ar أو /en حسب تفضيل الزائر */
+/**
+ * يوجّه أي مسار بلا لغة إلى لغة الزائر المحفوظة إن اختارها بنفسه، وإلا إلى العربية —
+ * اللغة الافتراضية للجميع أيًّا كانت لغة المتصفح.
+ */
 function pick(req: NextRequest): Lang {
   const saved = req.cookies.get("lang")?.value;
   if (saved && hasLocale(saved)) return saved;
-  const al = req.headers.get("accept-language")?.toLowerCase() ?? "";
-  const first = al.split(",")[0]?.trim() ?? "";
-  if (first.startsWith("en")) return "en";
   return defaultLang;
 }
 
