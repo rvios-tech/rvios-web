@@ -21,9 +21,13 @@ function pick(req: NextRequest): Lang {
 // تصف موقع Cloudflare. ترويسة Cloudflare نفسها تصف الزائر، وتغيب حين لا وكيل فتُستعمل ترويسة Vercel.
 const GEO_HEADERS = ["cf-ipcountry", "x-vercel-ip-country", "cloudfront-viewer-country", "x-country-code"];
 function countryOf(req: NextRequest): string | null {
+  return geoOf(req)?.cc ?? null;
+}
+/** الدولة ومصدرها — يُكتب في `x-rv-geo` للتشخيص (مثلًا `SA:cf-ipcountry`) */
+function geoOf(req: NextRequest): { cc: string; via: string } | null {
   for (const h of GEO_HEADERS) {
     const v = req.headers.get(h);
-    if (v && /^[A-Za-z]{2}$/.test(v)) return v; // Cloudflare يرسل XX/T1 لغير المعروف
+    if (v && /^[A-Za-z]{2}$/.test(v)) return { cc: v.toUpperCase(), via: h }; // Cloudflare يرسل XX/T1 لغير المعروف
   }
   return null;
 }
@@ -42,6 +46,8 @@ function withRegion(req: NextRequest, res: NextResponse): NextResponse {
   const pinned = req.cookies.get(REGION_PIN_COOKIE)?.value;
   const cc = countryOf(req);
   const region: Region | null = isRegion(asked) ? asked : isRegion(pinned) ? pinned : cc ? regionOfCountry(cc) : null;
+  const geo = geoOf(req);
+  res.headers.set("x-rv-geo", `${geo ? `${geo.cc}:${geo.via}` : "none"}${isRegion(pinned) ? ` pinned:${pinned}` : ""} → ${region ?? "default"}`);
   // لا Set-Cookie ما لم تتغيّر القيمة: استجابة بلا كوكي تبقى قابلة للتخزين عند أي CDN
   if (region && req.cookies.get(REGION_COOKIE)?.value !== region) {
     res.cookies.set(REGION_COOKIE, region, { path: "/", maxAge: 60 * 60 * 24 * 30, sameSite: "lax", secure });
