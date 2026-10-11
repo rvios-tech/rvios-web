@@ -61,15 +61,32 @@ const themeScript = `try{var t=localStorage.getItem('rv-theme');document.documen
 const orgJsonLd = (lang: "ar" | "en") =>
   JSON.stringify({
     "@context": "https://schema.org",
-    "@type": "Organization",
-    name: site.name,
-    url: `${site.url}/${lang}`,
-    logo: `${site.url}/${lang}/opengraph-image.png`,
-    email: site.email,
-    sameAs: site.social.map((s) => s.href),
-    contactPoint: [
-      { "@type": "ContactPoint", contactType: "customer service", telephone: `+${CONTACTS.sa.whatsapp}`, areaServed: "SA", availableLanguage: ["ar", "en"] },
-      { "@type": "ContactPoint", contactType: "customer service", telephone: `+${CONTACTS.ye.whatsapp}`, areaServed: "YE", availableLanguage: ["ar", "en"] },
+    "@graph": [
+      {
+        // الشعار المربّع — يظهر في لوحة المعرفة بجوجل
+        "@type": "Organization",
+        "@id": `${site.url}/#organization`,
+        name: site.name,
+        alternateName: site.short,
+        url: `${site.url}/`,
+        logo: { "@type": "ImageObject", url: `${site.url}/brand/rvios-logo.png`, width: 512, height: 512 },
+        email: site.email,
+        sameAs: site.social.map((s) => s.href),
+        contactPoint: [
+          { "@type": "ContactPoint", contactType: "customer service", telephone: `+${CONTACTS.sa.whatsapp}`, areaServed: "SA", availableLanguage: ["ar", "en"] },
+          { "@type": "ContactPoint", contactType: "customer service", telephone: `+${CONTACTS.ye.whatsapp}`, areaServed: "YE", availableLanguage: ["ar", "en"] },
+        ],
+      },
+      {
+        // اسم الموقع الذي يعرضه جوجل فوق الرابط في النتائج
+        "@type": "WebSite",
+        "@id": `${site.url}/#website`,
+        name: site.short,
+        alternateName: site.name,
+        url: `${site.url}/`,
+        inLanguage: lang,
+        publisher: { "@id": `${site.url}/#organization` },
+      },
     ],
   }).replace(/</g, "\\u003c");
 

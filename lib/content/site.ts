@@ -5,7 +5,9 @@ import type { Lang } from "@/lib/i18n/config";
 export const site = {
   name: "RVIOS Technologies",
   short: "RVIOS",
-  url: "https://rvios.com",
+  // العنوان الذي يُخدَم منه الموقع فعلًا (rvios.com يحوّل إليه) — الروابط الأساسية وخريطة
+  // الموقع والبيانات المنظّمة تشير إليه، فلا يرى جوجل رابطًا أساسيًّا يحوّل لغيره
+  url: (process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.rvios.com").replace(/\/+$/, ""),
   email: "rviostech@gmail.com",
   // الرقم وواتساب والعنوان حسب دولة الزائر: lib/content/contact.ts
   social: [
