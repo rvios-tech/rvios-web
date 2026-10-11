@@ -8,7 +8,7 @@ const T = {
   ar: {
     label: "من نحن",
     side: "استوديو تقني يصمّم المنتجات الرقمية ويبنيها ويشغّلها.",
-    text: "نحن RVIOS Technologies. نصمّم ونبني المنتجات الرقمية للشركات والعلامات الطموحة. لا نبدأ من قالب جاهز، بل من عملك وجمهورك وهدفك؛ ثم نصمّم ونطوّر ونُطلق، ونبقى شريكك التقني بعد الإطلاق حتى يكبر ما بنيناه معاً.",
+    text: "نحن ريفيوس للتصميم والتطوير والحلول الرقمية (RVIOS). نصمّم ونبني المنتجات الرقمية للشركات والعلامات الطموحة. لا نبدأ من قالب جاهز، بل من عملك وجمهورك وهدفك؛ ثم نصمّم ونطوّر ونُطلق، ونبقى شريكك التقني بعد الإطلاق حتى يكبر ما بنيناه معاً.",
     pillars: [
       { t: "الفهم قبل التصميم", d: "نحلل عملك وجمهورك قبل أن نرسم أول شاشة." },
       { t: "هندسة تدوم", d: "كود نظيف وآمن وقابل للتوسع، لا يُعاد بناؤه بعد عام." },
@@ -20,7 +20,7 @@ const T = {
   en: {
     label: "About us",
     side: "A technology studio that designs, builds and runs digital products.",
-    text: "We are RVIOS Technologies. We design and build digital products for ambitious companies and brands. We never start from a template — we start from your business, your audience and your goal. Then we design, engineer and launch, and stay on as your technology partner long after launch.",
+    text: "We are RVIOS Technology For Design, Develop and Digital Solutions. We design and build digital products for ambitious companies and brands. We never start from a template — we start from your business, your audience and your goal. Then we design, engineer and launch, and stay on as your technology partner long after launch.",
     pillars: [
       { t: "Understanding first", d: "We study your business and audience before drawing a single screen." },
       { t: "Engineering that lasts", d: "Clean, secure, scalable code that won't need rebuilding in a year." },

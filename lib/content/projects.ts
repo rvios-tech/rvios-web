@@ -8,14 +8,17 @@ export type Block =
   | { t: "image"; src: string; caption?: string; ratio?: string; contain?: boolean; bg?: string }
   | { t: "duo"; srcs: [string, string]; caption?: string; ratio?: string; bg?: string }
   | { t: "pages"; srcs: string[]; caption?: string }
-  | { t: "logo"; src: string; caption?: string; bg: string };
+  | { t: "logo"; src: string; caption?: string; bg: string }
+  /** الموقع على الحاسوب وبجانبه الجوال — للمنصات والمتاجر */
+  | { t: "devices"; desk: string; mobile: string; url: string; caption?: string; light?: boolean };
 
-export type Category = "web" | "identity" | "software";
+export type Category = "web" | "store" | "identity" | "software";
 export const categoryLabels: Record<Category | "all", string> = {
   all: "كل الأعمال",
   web: "مواقع إلكترونية",
+  store: "متاجر إلكترونية",
   identity: "هويات وملفات تعريفية",
-  software: "برمجيات",
+  software: "أنظمة ومنصات",
 };
 
 export type Project = {
@@ -48,6 +51,81 @@ export type Project = {
 const W = "/work";
 
 export const projects: Project[] = [
+  {
+    slug: "rvios-store",
+    name: "RVIOS Store",
+    latin: "منصة المتاجر الإلكترونية",
+    client: "منتج من RVIOS",
+    location: "اليمن والسعودية والخليج",
+    year: "2026",
+    tags: ["منصة SaaS", "متاجر إلكترونية", "18 قالبًا"],
+    categories: ["software", "store"],
+    mat: "#140B0C",
+    dark: true,
+    accent: "#E0303A",
+    cover: `${W}/rvios-store/home.webp`,
+    coverUrl: "store.rvios.com",
+    summary:
+      "منصة تبني للتاجر متجرًا إلكترونيًا كاملًا في دقائق: يختار قالبًا يليق ببضاعته، ويحصل على رابط واحد يشاركه، وتصله الطلبات منظّمة في لوحة تحكم عزم سمارت.",
+    challenge:
+      "أغلب التجار في المنطقة يبيعون عبر واتساب وإنستغرام: صور متفرقة، وأسعار تُكتب في كل محادثة، وطلبات تضيع بين الرسائل. والمنصات العالمية مكلفة، ولا تدعم الدفع المحلي ولا العربية كما ينبغي.",
+    approach:
+      "صمّمنا منصة عربية أولًا، بثمانية عشر قالبًا لكل منها هيكل وحركة وإحساس مختلف، لا ألوان مختلفة فقط. يبدأ المتجر مجانًا برابط name.rvios.store، ويترقّى إلى نطاق خاص وقوالب مميّزة. الطلبات تُحفظ قبل أن يفتح العميل واتساب، والدفع بالتحويل المحلي (الكريمي، جيب) مع إيصال يراجعه التاجر، وكل شيء يُدار من هاتفه.",
+    deliverables: [
+      "18 قالب متجر بهوية مستقلة",
+      "رابط فرعي فوري ونطاق خاص للباقات المدفوعة",
+      "سلة وطلبات تُحفظ قبل واتساب",
+      "دفع بالتحويل المحلي مع إيصال",
+      "تقييمات حقيقية من المشترين",
+      "ربط كامل بلوحة تحكم عزم سمارت",
+    ],
+    url: "https://store.rvios.com",
+    blocks: [
+      { t: "devices", desk: `${W}/rvios-store/home.webp`, mobile: `${W}/rvios-store/mobile.webp`, url: "store.rvios.com", caption: "الواجهة الرئيسية على الحاسوب والجوال" },
+      { t: "browser", src: `${W}/rvios-store/home-2.webp`, url: "store.rvios.com", caption: "كل متجر يعمل على الحاسوب والجوال، ويُدار من الهاتف" },
+      { t: "browser", src: `${W}/rvios-store/templates.webp`, url: "store.rvios.com/templates", caption: "معرض القوالب — معاينة حية لكل قالب قبل اختياره" },
+      { t: "browser", src: `${W}/rvios-store/create.webp`, url: "store.rvios.com/create", caption: "إنشاء المتجر: القالب، ثم الباقة، ثم بيانات المتجر" },
+    ],
+  },
+  {
+    slug: "azmsmart",
+    name: "AzmSmart",
+    latin: "نظام إدارة الأعمال",
+    client: "منتج من RVIOS",
+    location: "اليمن والسعودية والخليج",
+    year: "2026",
+    tags: ["نظام ERP", "لوحة تحكم", "SaaS متعدد الشركات"],
+    categories: ["software"],
+    mat: "#120C0B",
+    dark: true,
+    accent: "#C1272D",
+    cover: `${W}/azmsmart/dashboard.webp`,
+    coverUrl: "azm.rvios.com",
+    summary:
+      "نظام واحد يدير الشركة كلها: المتجر الإلكتروني والطلبات والمخزون، والعملاء والفواتير، والمشاريع والمهام، والفريق وصلاحياته — بواجهة عربية فخمة على الحاسوب والجوال.",
+    challenge:
+      "الشركات الصغيرة والمتوسطة تدير أعمالها بين جداول Excel ومجموعات واتساب وبرامج متفرقة لا يكلّم بعضها بعضًا. النتيجة أرقام لا تتطابق، وقرارات تُتخذ بلا صورة كاملة.",
+    approach:
+      "بنينا نظامًا متعدد الشركات على خادم موحّد: كل شركة معزولة ببياناتها، وكل عضو يرى ما تسمح به صلاحياته. المتجر الإلكتروني على منصة RVIOS Store متصل به مباشرة، فالطلب الذي يصل من المتجر يظهر فورًا في الطلبات والتقارير والمخزون. ولمن يريد أن يرى قبل أن يشترك، عرض توضيحي كامل ببيانات واقعية يُفتح بنقرة.",
+    deliverables: [
+      "لوحة تحكم بمؤشرات حيّة",
+      "المتجر والطلبات والمخزون والتقييمات",
+      "العملاء والفواتير بكل حالاتها",
+      "المشاريع والمهام والاجتماعات",
+      "الفريق والأدوار والصلاحيات",
+      "تقارير قابلة للتصدير إلى Excel",
+    ],
+    note: "جرّب العرض التوضيحي الكامل دون تسجيل من azm.rvios.com/demo",
+    url: "https://azm.rvios.com/demo",
+    blocks: [
+      { t: "devices", desk: `${W}/azmsmart/dashboard.webp`, mobile: `${W}/azmsmart/mobile.webp`, url: "azm.rvios.com/dashboard", caption: "نظرة عامة على المتجر — الحاسوب والجوال" },
+      { t: "browser", src: `${W}/azmsmart/orders.webp`, url: "azm.rvios.com/orders", caption: "الطلبات: الحالة، والدفع، والعميل، في جدول واحد" },
+      { t: "browser", src: `${W}/azmsmart/products.webp`, url: "azm.rvios.com/products", caption: "المنتجات والمخزون والأسعار" },
+      { t: "browser", src: `${W}/azmsmart/reports.webp`, url: "azm.rvios.com/reports", caption: "التقارير: المبيعات والزيارات يومًا بيوم، قابلة للتصدير" },
+      { t: "browser", src: `${W}/azmsmart/invoices.webp`, url: "azm.rvios.com/invoices", caption: "الفواتير بكل حالاتها: مدفوعة، جزئية، متأخرة" },
+      { t: "browser", src: `${W}/azmsmart/projects.webp`, url: "azm.rvios.com/projects", caption: "المشاريع والمهام ومراحل التسليم" },
+    ],
+  },
   {
     slug: "madar-waafaq",
     name: "مدار وآفاق",
@@ -159,6 +237,148 @@ export const projects: Project[] = [
     blocks: [
       { t: "browser", src: `${W}/tilal/home.webp`, url: "tilal", light: true, caption: "الصفحة الرئيسية" },
       { t: "browser", src: `${W}/tilal/services.webp`, url: "tilal/services", caption: "التخصصات: قائمة جانبية بعشرة تخصصات، ومعرض صور حقيقية لكل منها" },
+    ],
+  },
+  {
+    slug: "dar-alshal",
+    name: "دار الشال",
+    latin: "Dar Al-Shal",
+    client: "متجر على منصة RVIOS Store",
+    location: "المملكة العربية السعودية",
+    year: "2026",
+    tags: ["متجر إلكتروني", "قالب ميزون", "أزياء رجالية"],
+    categories: ["store", "web"],
+    mat: "#ECE8E1",
+    dark: false,
+    accent: "#141312",
+    cover: `${W}/dar-alshal/home.webp`,
+    coverUrl: "dar-alshal.rvios.store",
+    coverLight: true,
+    summary:
+      "متجر أزياء رجالية فاخرة — معاطف وشالات كشمير تُخاط وتُطرّز يدويًا — بواجهة هادئة تُبرز القطعة كما تُعرض في دار أزياء.",
+    challenge:
+      "يحتاج المتجر واجهة تشبه بضاعته وتعمل على الجوال قبل الحاسوب، وطلبات تصل منظّمة بدل رسائل متفرقة — دون تكلفة بناء متجر من الصفر.",
+    approach:
+      "بُني المتجر على قالب «ميزون» في منصة RVIOS Store: هيكل الصفحة وحركتها مصمّمان لنوع البضاعة نفسه، والمنتجات والأقسام والأسعار من لوحة التحكم، والطلب يُحفظ قبل أن يتواصل العميل عبر واتساب.",
+    deliverables: ["متجر بقالب ميزون", "أقسام: معاطف، قمصان، أحذية، إكسسوار", "خيارات المقاس لكل قطعة", "طلب عبر واتساب"],
+    note: "متجر نموذجي يعرض قالب «ميزون» كما يراه زبائن المتجر.",
+    url: "https://store.rvios.com/s/dar-alshal",
+    blocks: [
+      { t: "devices", desk: `${W}/dar-alshal/home.webp`, mobile: `${W}/dar-alshal/mobile.webp`, url: "dar-alshal.rvios.store", caption: "الواجهة على الحاسوب والجوال", light: true },
+      { t: "browser", src: `${W}/dar-alshal/products.webp`, url: "dar-alshal.rvios.store", caption: "المنتجات والأقسام", light: true },
+    ],
+  },
+  {
+    slug: "nabd-sports",
+    name: "نبض الرياضة",
+    latin: "Nabd Sports",
+    client: "متجر على منصة RVIOS Store",
+    location: "المملكة العربية السعودية",
+    year: "2026",
+    tags: ["متجر إلكتروني", "قالب نبض", "معدات رياضية"],
+    categories: ["store", "web"],
+    mat: "#0C0C0C",
+    dark: true,
+    accent: "#FF2D3D",
+    cover: `${W}/nabd-sports/home.webp`,
+    coverUrl: "nabd-sports.rvios.store",
+    summary:
+      "متجر أحذية وملابس ومعدات رياضية أصلية، بواجهة جريئة وحركة سريعة تشبه إيقاع التمرين.",
+    challenge:
+      "يحتاج المتجر واجهة تشبه بضاعته وتعمل على الجوال قبل الحاسوب، وطلبات تصل منظّمة بدل رسائل متفرقة — دون تكلفة بناء متجر من الصفر.",
+    approach:
+      "بُني المتجر على قالب «نبض» في منصة RVIOS Store: هيكل الصفحة وحركتها مصمّمان لنوع البضاعة نفسه، والمنتجات والأقسام والأسعار من لوحة التحكم، والطلب يُحفظ قبل أن يتواصل العميل عبر واتساب.",
+    deliverables: ["متجر بقالب نبض", "أقسام: أحذية، ملابس، معدات", "شارات الخصم والأكثر طلبًا", "واجهة الجوال أولًا"],
+    note: "متجر نموذجي يعرض قالب «نبض» كما يراه زبائن المتجر.",
+    url: "https://store.rvios.com/s/nabd-sports",
+    blocks: [
+      { t: "devices", desk: `${W}/nabd-sports/home.webp`, mobile: `${W}/nabd-sports/mobile.webp`, url: "nabd-sports.rvios.store", caption: "الواجهة على الحاسوب والجوال" },
+      { t: "browser", src: `${W}/nabd-sports/products.webp`, url: "nabd-sports.rvios.store", caption: "المنتجات والأقسام" },
+    ],
+  },
+  {
+    slug: "al-reef",
+    name: "مطعم الريف",
+    latin: "Al-Reef Kitchen",
+    client: "متجر على منصة RVIOS Store",
+    location: "المملكة العربية السعودية",
+    year: "2026",
+    tags: ["متجر إلكتروني", "قالب مائدة", "مطاعم وأكل"],
+    categories: ["store", "web"],
+    mat: "#1A1310",
+    dark: true,
+    accent: "#F2A33A",
+    cover: `${W}/al-reef/home.webp`,
+    coverUrl: "al-reef.rvios.store",
+    summary:
+      "متجر لمطعم يطبخ على الحطب: قائمة بصور شهية، وأصناف وإضافات، وطلب يصل للمطبخ منظّمًا.",
+    challenge:
+      "يحتاج المتجر واجهة تشبه بضاعته وتعمل على الجوال قبل الحاسوب، وطلبات تصل منظّمة بدل رسائل متفرقة — دون تكلفة بناء متجر من الصفر.",
+    approach:
+      "بُني المتجر على قالب «مائدة» في منصة RVIOS Store: هيكل الصفحة وحركتها مصمّمان لنوع البضاعة نفسه، والمنتجات والأقسام والأسعار من لوحة التحكم، والطلب يُحفظ قبل أن يتواصل العميل عبر واتساب.",
+    deliverables: ["متجر بقالب مائدة", "قائمة طعام بأقسام", "أصناف وإضافات لكل وجبة", "طلب سريع من الجوال"],
+    note: "متجر نموذجي يعرض قالب «مائدة» كما يراه زبائن المتجر.",
+    url: "https://store.rvios.com/s/al-reef",
+    blocks: [
+      { t: "devices", desk: `${W}/al-reef/home.webp`, mobile: `${W}/al-reef/mobile.webp`, url: "al-reef.rvios.store", caption: "الواجهة على الحاسوب والجوال" },
+      { t: "browser", src: `${W}/al-reef/products.webp`, url: "al-reef.rvios.store", caption: "المنتجات والأقسام" },
+    ],
+  },
+  {
+    slug: "reem-sweets",
+    name: "حلويات ريم",
+    latin: "Reem Sweets",
+    client: "متجر على منصة RVIOS Store",
+    location: "المملكة العربية السعودية",
+    year: "2026",
+    tags: ["متجر إلكتروني", "قالب سكّر", "حلويات منزلية"],
+    categories: ["store", "web"],
+    mat: "#FDEFEF",
+    dark: false,
+    accent: "#E0284F",
+    cover: `${W}/reem-sweets/home.webp`,
+    coverUrl: "reem-sweets.rvios.store",
+    coverLight: true,
+    summary:
+      "متجر لمطبخ منزلي يخبز بالطلب يوميًا: كيك وكوكيز ودونات بواجهة مرحة بألوان الحلوى.",
+    challenge:
+      "يحتاج المتجر واجهة تشبه بضاعته وتعمل على الجوال قبل الحاسوب، وطلبات تصل منظّمة بدل رسائل متفرقة — دون تكلفة بناء متجر من الصفر.",
+    approach:
+      "بُني المتجر على قالب «سكّر» في منصة RVIOS Store: هيكل الصفحة وحركتها مصمّمان لنوع البضاعة نفسه، والمنتجات والأقسام والأسعار من لوحة التحكم، والطلب يُحفظ قبل أن يتواصل العميل عبر واتساب.",
+    deliverables: ["متجر بقالب سكّر", "أقسام: كيك، كوكيز، دونات", "أسعار قبل الخصم وبعده", "طلب بالتوصيل في اليوم نفسه"],
+    note: "متجر نموذجي يعرض قالب «سكّر» كما يراه زبائن المتجر.",
+    url: "https://store.rvios.com/s/reem-sweets",
+    blocks: [
+      { t: "devices", desk: `${W}/reem-sweets/home.webp`, mobile: `${W}/reem-sweets/mobile.webp`, url: "reem-sweets.rvios.store", caption: "الواجهة على الحاسوب والجوال", light: true },
+      { t: "browser", src: `${W}/reem-sweets/products.webp`, url: "reem-sweets.rvios.store", caption: "المنتجات والأقسام", light: true },
+    ],
+  },
+  {
+    slug: "tech-plus",
+    name: "تقنية بلس",
+    latin: "Tech Plus",
+    client: "متجر على منصة RVIOS Store",
+    location: "المملكة العربية السعودية",
+    year: "2026",
+    tags: ["متجر إلكتروني", "قالب فولت", "إلكترونيات"],
+    categories: ["store", "web"],
+    mat: "#05070B",
+    dark: true,
+    accent: "#C6FF3D",
+    cover: `${W}/tech-plus/home.webp`,
+    coverUrl: "tech-plus.rvios.store",
+    summary:
+      "متجر سماعات وساعات ذكية بضمان حقيقي، بواجهة تقنية داكنة تُبرز المنتج ومواصفاته.",
+    challenge:
+      "يحتاج المتجر واجهة تشبه بضاعته وتعمل على الجوال قبل الحاسوب، وطلبات تصل منظّمة بدل رسائل متفرقة — دون تكلفة بناء متجر من الصفر.",
+    approach:
+      "بُني المتجر على قالب «فولت» في منصة RVIOS Store: هيكل الصفحة وحركتها مصمّمان لنوع البضاعة نفسه، والمنتجات والأقسام والأسعار من لوحة التحكم، والطلب يُحفظ قبل أن يتواصل العميل عبر واتساب.",
+    deliverables: ["متجر بقالب فولت", "أقسام: صوتيات، ساعات، إكسسوار", "تفاصيل ومواصفات لكل منتج", "شارات الجديد والأكثر مبيعًا"],
+    note: "متجر نموذجي يعرض قالب «فولت» كما يراه زبائن المتجر.",
+    url: "https://store.rvios.com/s/tech-plus",
+    blocks: [
+      { t: "devices", desk: `${W}/tech-plus/home.webp`, mobile: `${W}/tech-plus/mobile.webp`, url: "tech-plus.rvios.store", caption: "الواجهة على الحاسوب والجوال" },
+      { t: "browser", src: `${W}/tech-plus/products.webp`, url: "tech-plus.rvios.store", caption: "المنتجات والأقسام" },
     ],
   },
   {

@@ -12,7 +12,7 @@ const CFG: StageCfg = { d: { x: 0, y: 0.3, s: 0.5 }, m: { x: 0, y: 0.6, s: 0.4 }
 
 const T = {
   ar: {
-    kicker: "RVIOS Technologies",
+    kicker: "ريفيوس للتصميم والتطوير والحلول الرقمية",
     l1: "نبني الأنظمة.",
     l2: "نطوّر الحلول. نمكّن الأعمال.",
     lead: "نصمّم ونطوّر المواقع الإلكترونية والأنظمة والمتاجر وصفحات الهبوط، ونبني منتجاتنا الخاصة لإدارة الأعمال والتجارة.",
@@ -27,7 +27,7 @@ const T = {
     ],
   },
   en: {
-    kicker: "RVIOS Technologies",
+    kicker: "RVIOS Technology For Design, Develop and Digital Solutions",
     l1: "We build systems.",
     l2: "We engineer solutions. We empower businesses.",
     lead: "We design and develop websites, web systems, online stores and landing pages — and build our own products for business and commerce.",

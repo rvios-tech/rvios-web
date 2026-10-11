@@ -2,15 +2,19 @@
 import { useEffect, useRef, useState } from "react";
 import { gsap, reducedMotion } from "@/lib/gsap";
 import { LogoMark } from "@/components/ui/Logo";
+import { usePathname } from "next/navigation";
 import { isFirstVisit } from "@/lib/session";
+import { isReadingPath } from "@/components/stage/Stage";
 
 /** أول زيارة فقط: يُرسم الشعار بخط ذهبي، ثم يتبدد ليظهر الشعار الزجاجي */
 export function Preloader() {
   const ref = useRef<HTMLDivElement>(null);
-  const [show, setShow] = useState(true);
+  // من يصل إلى مقالة مباشرة (من جوجل مثلًا) يقرأ فورًا — بلا شاشة افتتاحية
+  const reading = isReadingPath(usePathname());
+  const [show, setShow] = useState(!reading);
 
   useEffect(() => {
-    if (!isFirstVisit() || reducedMotion()) { setShow(false); return; }
+    if (reading || !isFirstVisit() || reducedMotion()) { setShow(false); return; }
     document.body.classList.add("busy");
     const path = ref.current!.querySelector("path")!;
     path.setAttribute("pathLength", "1");
@@ -21,7 +25,7 @@ export function Preloader() {
       .to(ref.current!.querySelector("p"), { opacity: 0, duration: 0.5 }, 1.55)
       .to(ref.current, { opacity: 0, duration: 0.7, ease: "power2.inOut" }, 1.85);
     return () => { tl.kill(); document.body.classList.remove("busy"); };
-  }, []);
+  }, [reading]);
 
   if (!show) return null;
   return (

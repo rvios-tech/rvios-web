@@ -8,13 +8,89 @@ import type { Project, Category } from "../projects";
 export const categoryLabels: Record<Category | "all", string> = {
   all: "All work",
   web: "Websites",
+  store: "Online stores",
   identity: "Identities & profiles",
-  software: "Software",
+  software: "Systems & platforms",
 };
 
 const W = "/work";
 
 export const projects: Project[] = [
+  {
+    slug: "rvios-store",
+    name: "RVIOS Store",
+    latin: "E-commerce platform",
+    client: "An RVIOS product",
+    location: "Yemen, Saudi Arabia & the Gulf",
+    year: "2026",
+    tags: ["SaaS platform", "Online stores", "18 templates"],
+    categories: ["software", "store"],
+    mat: "#140B0C",
+    dark: true,
+    accent: "#E0303A",
+    cover: `${W}/rvios-store/home.webp`,
+    coverUrl: "store.rvios.com",
+    summary:
+      "A platform that gives a merchant a complete online store in minutes: pick a template that suits the products, share one link, and receive orders neatly in the AzmSmart dashboard.",
+    challenge:
+      "Most merchants in the region sell over WhatsApp and Instagram: scattered photos, prices retyped in every chat, and orders lost between messages. Global platforms are expensive and don't support local payment or Arabic properly.",
+    approach:
+      "We designed an Arabic-first platform with eighteen templates, each with its own structure, motion and feel, not just different colours. A store starts free on name.rvios.store and upgrades to a custom domain and premium templates. Orders are saved before the customer opens WhatsApp, payment is by local transfer (Kuraimi, Jaib) with a receipt the merchant reviews, and everything is run from a phone.",
+    deliverables: [
+      "18 store templates, each with its own identity",
+      "Instant subdomain, custom domain on paid plans",
+      "Cart and orders saved before WhatsApp",
+      "Local transfer payment with receipt",
+      "Real reviews from buyers",
+      "Fully connected to the AzmSmart dashboard",
+    ],
+    url: "https://store.rvios.com",
+    blocks: [
+      { t: "devices", desk: `${W}/rvios-store/home.webp`, mobile: `${W}/rvios-store/mobile.webp`, url: "store.rvios.com", caption: "The home page on desktop and mobile" },
+      { t: "browser", src: `${W}/rvios-store/home-2.webp`, url: "store.rvios.com", caption: "Every store works on desktop and mobile, and is run from a phone" },
+      { t: "browser", src: `${W}/rvios-store/templates.webp`, url: "store.rvios.com/templates", caption: "The template gallery — a live preview of each template before choosing" },
+      { t: "browser", src: `${W}/rvios-store/create.webp`, url: "store.rvios.com/create", caption: "Creating a store: template, then plan, then store details" },
+    ],
+  },
+  {
+    slug: "azmsmart",
+    name: "AzmSmart",
+    latin: "Business management system",
+    client: "An RVIOS product",
+    location: "Yemen, Saudi Arabia & the Gulf",
+    year: "2026",
+    tags: ["ERP system", "Dashboard", "Multi-tenant SaaS"],
+    categories: ["software"],
+    mat: "#120C0B",
+    dark: true,
+    accent: "#C1272D",
+    cover: `${W}/azmsmart/dashboard.webp`,
+    coverUrl: "azm.rvios.com",
+    summary:
+      "One system that runs the whole company: the online store, orders and stock, clients and invoices, projects and tasks, and the team and its permissions — in a refined Arabic interface on desktop and mobile.",
+    challenge:
+      "Small and mid-sized companies run their business across Excel sheets, WhatsApp groups and separate tools that don't talk to each other. The result: numbers that don't match and decisions made without the full picture.",
+    approach:
+      "We built a multi-company system on one unified backend: every company is isolated with its own data, and every member sees what their permissions allow. The online store on RVIOS Store connects to it directly, so an order placed in the store appears at once in orders, reports and stock. For anyone who wants to look before subscribing, a full demo with realistic data opens in one click.",
+    deliverables: [
+      "Dashboard with live indicators",
+      "Store, orders, stock and reviews",
+      "Clients and invoices in every state",
+      "Projects, tasks and meetings",
+      "Team, roles and permissions",
+      "Reports exportable to Excel",
+    ],
+    note: "Try the full demo without signing up at azm.rvios.com/demo",
+    url: "https://azm.rvios.com/demo",
+    blocks: [
+      { t: "devices", desk: `${W}/azmsmart/dashboard.webp`, mobile: `${W}/azmsmart/mobile.webp`, url: "azm.rvios.com/dashboard", caption: "Store overview — desktop and mobile" },
+      { t: "browser", src: `${W}/azmsmart/orders.webp`, url: "azm.rvios.com/orders", caption: "Orders: status, payment and customer in one table" },
+      { t: "browser", src: `${W}/azmsmart/products.webp`, url: "azm.rvios.com/products", caption: "Products, stock and prices" },
+      { t: "browser", src: `${W}/azmsmart/reports.webp`, url: "azm.rvios.com/reports", caption: "Reports: sales and visits day by day, exportable" },
+      { t: "browser", src: `${W}/azmsmart/invoices.webp`, url: "azm.rvios.com/invoices", caption: "Invoices in every state: paid, partial, overdue" },
+      { t: "browser", src: `${W}/azmsmart/projects.webp`, url: "azm.rvios.com/projects", caption: "Projects, tasks and delivery milestones" },
+    ],
+  },
   {
     slug: "madar-waafaq",
     name: "Madar Waafaq",
@@ -126,6 +202,148 @@ export const projects: Project[] = [
     blocks: [
       { t: "browser", src: `${W}/tilal/home.webp`, url: "tilal", light: true, caption: "Homepage" },
       { t: "browser", src: `${W}/tilal/services.webp`, url: "tilal/services", caption: "Specialties: a side menu of ten specialties, each with a gallery of real project photos" },
+    ],
+  },
+  {
+    slug: "dar-alshal",
+    name: "Dar Al-Shal",
+    latin: "Menswear",
+    client: "A store on RVIOS Store",
+    location: "Saudi Arabia",
+    year: "2026",
+    tags: ["Online store", "Maison template", "Menswear"],
+    categories: ["store", "web"],
+    mat: "#ECE8E1",
+    dark: false,
+    accent: "#141312",
+    cover: `${W}/dar-alshal/home.webp`,
+    coverUrl: "dar-alshal.rvios.store",
+    coverLight: true,
+    summary:
+      "A luxury menswear store — coats and cashmere shawls tailored and embroidered by hand — with a calm storefront that presents each piece as a fashion house would.",
+    challenge:
+      "The store needs a storefront that looks like its products and works on mobile first, with orders arriving organised instead of scattered messages — without the cost of building a store from scratch.",
+    approach:
+      "The store is built on the Maison template on RVIOS Store: the page structure and motion are designed for this kind of product, products, sections and prices come from the dashboard, and each order is saved before the customer gets in touch on WhatsApp.",
+    deliverables: ["Store on the Maison template", "Sections: coats, shirts, shoes, accessories", "Size options per piece", "Ordering via WhatsApp"],
+    note: "A showcase store presenting the Maison template as the store's customers see it.",
+    url: "https://store.rvios.com/s/dar-alshal",
+    blocks: [
+      { t: "devices", desk: `${W}/dar-alshal/home.webp`, mobile: `${W}/dar-alshal/mobile.webp`, url: "dar-alshal.rvios.store", caption: "The storefront on desktop and mobile", light: true },
+      { t: "browser", src: `${W}/dar-alshal/products.webp`, url: "dar-alshal.rvios.store", caption: "Products and sections", light: true },
+    ],
+  },
+  {
+    slug: "nabd-sports",
+    name: "Nabd Sports",
+    latin: "Sportswear",
+    client: "A store on RVIOS Store",
+    location: "Saudi Arabia",
+    year: "2026",
+    tags: ["Online store", "Nabd template", "Sports gear"],
+    categories: ["store", "web"],
+    mat: "#0C0C0C",
+    dark: true,
+    accent: "#FF2D3D",
+    cover: `${W}/nabd-sports/home.webp`,
+    coverUrl: "nabd-sports.rvios.store",
+    summary:
+      "A store for genuine sports shoes, apparel and gear, with a bold storefront and fast motion that matches a workout's rhythm.",
+    challenge:
+      "The store needs a storefront that looks like its products and works on mobile first, with orders arriving organised instead of scattered messages — without the cost of building a store from scratch.",
+    approach:
+      "The store is built on the Nabd template on RVIOS Store: the page structure and motion are designed for this kind of product, products, sections and prices come from the dashboard, and each order is saved before the customer gets in touch on WhatsApp.",
+    deliverables: ["Store on the Nabd template", "Sections: shoes, apparel, gear", "Sale and best-seller badges", "Mobile-first storefront"],
+    note: "A showcase store presenting the Nabd template as the store's customers see it.",
+    url: "https://store.rvios.com/s/nabd-sports",
+    blocks: [
+      { t: "devices", desk: `${W}/nabd-sports/home.webp`, mobile: `${W}/nabd-sports/mobile.webp`, url: "nabd-sports.rvios.store", caption: "The storefront on desktop and mobile" },
+      { t: "browser", src: `${W}/nabd-sports/products.webp`, url: "nabd-sports.rvios.store", caption: "Products and sections" },
+    ],
+  },
+  {
+    slug: "al-reef",
+    name: "Al-Reef Kitchen",
+    latin: "Restaurant",
+    client: "A store on RVIOS Store",
+    location: "Saudi Arabia",
+    year: "2026",
+    tags: ["Online store", "Maida template", "Restaurants & food"],
+    categories: ["store", "web"],
+    mat: "#1A1310",
+    dark: true,
+    accent: "#F2A33A",
+    cover: `${W}/al-reef/home.webp`,
+    coverUrl: "al-reef.rvios.store",
+    summary:
+      "A store for a wood-fire kitchen: a menu with appetising photos, options and add-ons, and orders that reach the kitchen organised.",
+    challenge:
+      "The store needs a storefront that looks like its products and works on mobile first, with orders arriving organised instead of scattered messages — without the cost of building a store from scratch.",
+    approach:
+      "The store is built on the Maida template on RVIOS Store: the page structure and motion are designed for this kind of product, products, sections and prices come from the dashboard, and each order is saved before the customer gets in touch on WhatsApp.",
+    deliverables: ["Store on the Maida template", "Menu with sections", "Options and add-ons per dish", "Quick ordering from mobile"],
+    note: "A showcase store presenting the Maida template as the store's customers see it.",
+    url: "https://store.rvios.com/s/al-reef",
+    blocks: [
+      { t: "devices", desk: `${W}/al-reef/home.webp`, mobile: `${W}/al-reef/mobile.webp`, url: "al-reef.rvios.store", caption: "The storefront on desktop and mobile" },
+      { t: "browser", src: `${W}/al-reef/products.webp`, url: "al-reef.rvios.store", caption: "Products and sections" },
+    ],
+  },
+  {
+    slug: "reem-sweets",
+    name: "Reem Sweets",
+    latin: "Home bakery",
+    client: "A store on RVIOS Store",
+    location: "Saudi Arabia",
+    year: "2026",
+    tags: ["Online store", "Sukkar template", "Home-made sweets"],
+    categories: ["store", "web"],
+    mat: "#FDEFEF",
+    dark: false,
+    accent: "#E0284F",
+    cover: `${W}/reem-sweets/home.webp`,
+    coverUrl: "reem-sweets.rvios.store",
+    coverLight: true,
+    summary:
+      "A store for a home kitchen that bakes to order every day: cakes, cookies and doughnuts in a playful storefront in candy colours.",
+    challenge:
+      "The store needs a storefront that looks like its products and works on mobile first, with orders arriving organised instead of scattered messages — without the cost of building a store from scratch.",
+    approach:
+      "The store is built on the Sukkar template on RVIOS Store: the page structure and motion are designed for this kind of product, products, sections and prices come from the dashboard, and each order is saved before the customer gets in touch on WhatsApp.",
+    deliverables: ["Store on the Sukkar template", "Sections: cakes, cookies, doughnuts", "Prices before and after discount", "Same-day delivery orders"],
+    note: "A showcase store presenting the Sukkar template as the store's customers see it.",
+    url: "https://store.rvios.com/s/reem-sweets",
+    blocks: [
+      { t: "devices", desk: `${W}/reem-sweets/home.webp`, mobile: `${W}/reem-sweets/mobile.webp`, url: "reem-sweets.rvios.store", caption: "The storefront on desktop and mobile", light: true },
+      { t: "browser", src: `${W}/reem-sweets/products.webp`, url: "reem-sweets.rvios.store", caption: "Products and sections", light: true },
+    ],
+  },
+  {
+    slug: "tech-plus",
+    name: "Tech Plus",
+    latin: "Electronics",
+    client: "A store on RVIOS Store",
+    location: "Saudi Arabia",
+    year: "2026",
+    tags: ["Online store", "Volt template", "Electronics"],
+    categories: ["store", "web"],
+    mat: "#05070B",
+    dark: true,
+    accent: "#C6FF3D",
+    cover: `${W}/tech-plus/home.webp`,
+    coverUrl: "tech-plus.rvios.store",
+    summary:
+      "A store for headphones and smartwatches with a real warranty, with a dark tech storefront that puts the product and its specs first.",
+    challenge:
+      "The store needs a storefront that looks like its products and works on mobile first, with orders arriving organised instead of scattered messages — without the cost of building a store from scratch.",
+    approach:
+      "The store is built on the Volt template on RVIOS Store: the page structure and motion are designed for this kind of product, products, sections and prices come from the dashboard, and each order is saved before the customer gets in touch on WhatsApp.",
+    deliverables: ["Store on the Volt template", "Sections: audio, watches, accessories", "Details and specs per product", "New and best-seller badges"],
+    note: "A showcase store presenting the Volt template as the store's customers see it.",
+    url: "https://store.rvios.com/s/tech-plus",
+    blocks: [
+      { t: "devices", desk: `${W}/tech-plus/home.webp`, mobile: `${W}/tech-plus/mobile.webp`, url: "tech-plus.rvios.store", caption: "The storefront on desktop and mobile" },
+      { t: "browser", src: `${W}/tech-plus/products.webp`, url: "tech-plus.rvios.store", caption: "Products and sections" },
     ],
   },
   {

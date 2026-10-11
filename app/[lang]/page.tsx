@@ -3,8 +3,11 @@ import { Statement } from "@/components/home/Statement";
 import { ServicesShowcase } from "@/components/home/ServicesShowcase";
 import { Products, HomeProcess, Journal } from "@/components/home/HomeSections";
 import { Closing } from "@/components/layout/Closing";
+import { Testimonials } from "@/components/home/Testimonials";
+import { langOf } from "@/lib/i18n/page";
 
-export default function Home() {
+export default async function Home({ params }: PageProps<"/[lang]">) {
+  const lang = await langOf(params);
   return (
     <>
       <HomeHero />
@@ -12,6 +15,7 @@ export default function Home() {
       <ServicesShowcase />
       <Products />
       <HomeProcess />
+      <Testimonials lang={lang} />
       <Journal />
       <Closing />
     </>

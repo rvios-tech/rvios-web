@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { Browser } from "@/components/ui/Browser";
+import { Phone } from "@/components/ui/Phone";
 import { Curtain, Rise } from "@/components/ui/motion";
 import type { Block } from "@/lib/content";
 
@@ -51,6 +52,16 @@ export function CaseBlock({ b, dark }: { b: Block; dark: boolean }) {
             ))}
           </Rise>
           <figcaption className="md:mt-14"><Caption text={b.caption} dark={dark} /></figcaption>
+        </figure>
+      );
+    case "devices":
+      return (
+        <figure className="mx-auto w-full max-w-[1240px]">
+          <Curtain className="relative pb-[6%]">
+            <Browser src={b.desk} url={b.url} light={b.light} sizes="(max-width:1300px) 94vw, 1240px" className="w-[88%]" />
+            <Phone src={b.mobile} className="absolute bottom-0 end-0 w-[22%] min-w-[110px]" />
+          </Curtain>
+          <figcaption><Caption text={b.caption} dark={dark} /></figcaption>
         </figure>
       );
     case "logo":

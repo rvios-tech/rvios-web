@@ -9,7 +9,7 @@ import { SmoothScroll } from "@/components/layout/SmoothScroll";
 import { Header } from "@/components/layout/Header";
 import { Preloader } from "@/components/layout/Preloader";
 import { LangProvider } from "@/components/i18n/LangProvider";
-import { site, siteText } from "@/lib/content/site";
+import { keywordsOf, site, siteText } from "@/lib/content/site";
 import { CONTACTS, regionCss, regionScript } from "@/lib/content/contact";
 import { dirOf, hasLocale, locales } from "@/lib/i18n/config";
 
@@ -36,10 +36,15 @@ export async function generateMetadata({ params }: LayoutProps<"/[lang]">): Prom
   const t = siteText[lang];
   return {
     metadataBase: new URL(site.url),
-    title: { default: `${site.name} — ${t.tagline}`, template: `%s | ${site.short}` },
+    title: { default: t.title, template: `%s | ${lang === "ar" ? `${site.shortAr} ${site.short}` : site.short}` },
     description: t.description,
-    openGraph: { type: "website", locale: lang === "ar" ? "ar_YE" : "en_US", siteName: site.name, title: site.name, description: t.description },
-    twitter: { card: "summary_large_image", title: site.name, description: t.description },
+    keywords: keywordsOf[lang],
+    applicationName: site.short,
+    authors: [{ name: t.legal, url: site.url }],
+    creator: t.legal,
+    publisher: t.legal,
+    openGraph: { type: "website", locale: lang === "ar" ? "ar_SA" : "en_US", alternateLocale: lang === "ar" ? ["en_US"] : ["ar_SA"], siteName: t.legal, title: t.title, description: t.description },
+    twitter: { card: "summary_large_image", title: t.title, description: t.description },
     alternates: { canonical: `/${lang}`, languages: { ar: "/ar", en: "/en", "x-default": "/ar" } },
   };
 }
@@ -67,7 +72,7 @@ const orgJsonLd = (lang: "ar" | "en") =>
         "@type": "Organization",
         "@id": `${site.url}/#organization`,
         name: site.name,
-        alternateName: site.short,
+        alternateName: [site.nameAr, site.short, site.shortAr, "RVIOS Technology"],
         url: `${site.url}/`,
         logo: { "@type": "ImageObject", url: `${site.url}/brand/rvios-logo.png`, width: 512, height: 512 },
         email: site.email,
@@ -81,8 +86,8 @@ const orgJsonLd = (lang: "ar" | "en") =>
         // اسم الموقع الذي يعرضه جوجل فوق الرابط في النتائج
         "@type": "WebSite",
         "@id": `${site.url}/#website`,
-        name: site.short,
-        alternateName: site.name,
+        name: lang === "ar" ? site.shortAr : site.short,
+        alternateName: [site.short, site.shortAr, site.name, site.nameAr],
         url: `${site.url}/`,
         inLanguage: lang,
         publisher: { "@id": `${site.url}/#organization` },

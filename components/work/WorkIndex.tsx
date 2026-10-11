@@ -5,7 +5,7 @@ import { content, type Category } from "@/lib/content";
 import { useLang } from "@/components/i18n/LangProvider";
 import { ScrollTrigger } from "@/lib/gsap";
 
-const keys = ["all", "web", "identity", "software"] as const;
+const keys = ["all", "software", "store", "web", "identity"] as const;
 
 /** فهرس الأعمال مع تصفية نصية هادئة */
 export function WorkIndex() {

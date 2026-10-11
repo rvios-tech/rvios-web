@@ -8,6 +8,7 @@ import { Faq } from "@/components/ui/Faq";
 import { Dashboard } from "@/components/azm/Dashboard";
 import { PhoneStore } from "@/components/shop/PhoneStore";
 import { Closing } from "@/components/layout/Closing";
+import { Testimonials } from "@/components/home/Testimonials";
 import { L } from "@/components/i18n/L";
 import type { StageCfg } from "@/lib/stage/glass";
 import { content, type Service } from "@/lib/content";
@@ -160,6 +161,8 @@ export default async function ServicesPage({ params }: PageProps<"/[lang]/servic
           <div className="mt-16"><Steps items={processOf(lang)} /></div>
         </div>
       </Scene>
+
+      <Testimonials lang={lang} />
 
       <Scene id="services-faq" className="px-[var(--pad)] py-[clamp(100px,16vh,170px)]">
         <div className="mx-auto grid max-w-[1480px] gap-12 lg:grid-cols-[1fr_1.6fr]">
