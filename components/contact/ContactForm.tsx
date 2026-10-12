@@ -2,11 +2,13 @@
 import { useState, type FormEvent } from "react";
 import { budgetsOf, timelinesOf, topicsOf, validate, type ContactInput } from "@/lib/contact";
 import { waLink } from "@/lib/content/site";
-import { CONTACTS } from "@/lib/content/contact";
+import { CONTACTS, waHref } from "@/lib/content/contact";
 import { ByRegion } from "@/components/region/ByRegion";
 import { useRegion } from "@/components/region/useRegion";
 import { useLang } from "@/components/i18n/LangProvider";
 import { UNIFIED_API_URL } from "@/lib/content/links";
+import type { Lang } from "@/lib/i18n/config";
+import type { Region } from "@/lib/content/contact";
 
 const T = {
   ar: { doneLabel: "وصلت رسالتك", thanks: "شكراً لك.", doneText: "سنراجع طلبك ونعود إليك خلال يوم عمل واحد بتصور أولي. وإن كان الأمر عاجلاً، راسلنا مباشرة على واتساب.", wa: "راسلنا على واتساب", help: "بماذا نساعدك؟", multi: "(يمكن اختيار أكثر من واحد)", name: "الاسم *", namePh: "اسمك الكامل", company: "الشركة", companyPh: "اسم الشركة أو العلامة", email: "البريد الإلكتروني *", phone: "واتساب أو الهاتف", budget: "الميزانية التقريبية", when: "متى تريد البدء؟", msg: "حدّثنا عن مشروعك *", msgPh: "ما الذي تريد بناءه؟ من هم عملاؤك؟ وما الذي يعيقك اليوم؟", note: "نرد خلال يوم عمل واحد. بياناتك لا تُشارك مع أي طرف.", sending: "جارٍ الإرسال…", send: "أرسل الطلب", fail: "تعذر الإرسال. حاول مرة أخرى، أو راسلنا على واتساب." },
@@ -23,9 +25,31 @@ export function ContactForm({ initial }: { initial?: string }) {
   const [sel, setSel] = useState<string[]>(initial && topicsOf(lang).some((x) => x.value === initial) ? [initial] : []);
   const [budget, setBudget] = useState("");
   const [timeline, setTimeline] = useState("");
+  const [waMsg, setWaMsg] = useState("");
   const [errors, setErrors] = useState<Errors>({});
   const [state, setState] = useState<"idle" | "sending" | "done" | "error">("idle");
   const toggle = (v: string) => setSel((s) => (s.includes(v) ? s.filter((x) => x !== v) : [...s, v]));
+
+  /** تجهيز رسالة واتساب وفتحها في تبويب جديد */
+  function openWhatsApp(data: ContactInput, topicLabels: string, r: Region, l: Lang) {
+    const lines = [
+      l === "ar" ? "📩 *طلب تواصل جديد من موقع ريفيوس*" : "📩 *New contact request from RVIOS website*",
+      "",
+      `${l === "ar" ? "الاسم" : "Name"}: ${data.name}`,
+      data.company ? `${l === "ar" ? "الشركة" : "Company"}: ${data.company}` : "",
+      `${l === "ar" ? "البريد" : "Email"}: ${data.email}`,
+      data.phone ? `${l === "ar" ? "الهاتف" : "Phone"}: ${data.phone}` : "",
+      `${l === "ar" ? "الخدمة" : "Service"}: ${topicLabels}`,
+      data.budget ? `${l === "ar" ? "الميزانية" : "Budget"}: ${data.budget}` : "",
+      data.timeline ? `${l === "ar" ? "الموعد" : "Timeline"}: ${data.timeline}` : "",
+      "",
+      `${l === "ar" ? "الرسالة" : "Message"}:`,
+      data.message,
+    ].filter(Boolean).join("\n");
+    setWaMsg(lines);
+    const c = CONTACTS[r];
+    window.open(waHref(c, lines), "_blank", "noopener");
+  }
 
   async function submit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -40,10 +64,10 @@ export function ContactForm({ initial }: { initial?: string }) {
     if (Object.keys(errs).length) return;
     if (data.website) { setState("done"); return; } // حقل مخفي لصد الرسائل الآلية
     setState("sending");
+    const labels = data.topics.map((v) => topics.find((x) => x.value === v)?.label ?? v).join("، ");
     try {
       if (UNIFIED_API_URL) {
         // صندوق رسائل الموقع في AzmSmart — من المتصفح مباشرةً كي يرى حدّ المعدّل عنوان الزائر
-        const labels = data.topics.map((v) => topics.find((x) => x.value === v)?.label ?? v).join("، ");
         const message = [
           data.message.trim(),
           "",
@@ -56,14 +80,16 @@ export function ContactForm({ initial }: { initial?: string }) {
           body: JSON.stringify({ name: data.name.trim(), email: data.email.trim(), phone: data.phone?.trim() || undefined, service: labels.slice(0, 160), message: message.slice(0, 4000) }),
         });
         if (!r.ok) { setState("error"); return; }
-        // إشعار البريد (Resend) اختياري — لا يُفشل الإرسال إن تعذّر
+        // إشعار البريد (اختياري — لا يُفشل الإرسال إن تعذّر)
         fetch("/api/contact", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(data) }).catch(() => {});
+        openWhatsApp(data, labels, region, lang);
         setState("done");
         return;
       }
       const r = await fetch("/api/contact", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(data) });
       const j = await r.json();
       if (!r.ok || !j.ok) { setErrors(j.errors ?? {}); setState("error"); return; }
+      openWhatsApp(data, labels, region, lang);
       setState("done");
     } catch { setState("error"); }
   }
@@ -74,7 +100,7 @@ export function ContactForm({ initial }: { initial?: string }) {
         <span className="label">{t.doneLabel}</span>
         <h2 className="h2 mt-6">{t.thanks}</h2>
         <p className="lead mt-5 max-w-[40ch] text-mist">{t.doneText}</p>
-        <ByRegion>{(c) => <a className="btn btn-ruby mt-9" href={waLink(c, lang)} target="_blank" rel="noopener">{t.wa}</a>}</ByRegion>
+        <ByRegion>{(c) => <a className="btn btn-ruby mt-9" href={waLink(c, lang, waMsg || undefined)} target="_blank" rel="noopener">{t.wa}</a>}</ByRegion>
       </div>
     );
 
