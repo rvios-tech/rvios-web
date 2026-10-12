@@ -63,11 +63,16 @@ export function ContactForm({ initial }: { initial?: string }) {
     setErrors(errs);
     if (Object.keys(errs).length) return;
     if (data.website) { setState("done"); return; } // حقل مخفي لصد الرسائل الآلية
-    setState("sending");
+
     const labels = data.topics.map((v) => topics.find((x) => x.value === v)?.label ?? v).join("، ");
+
+    // ───── فتح واتساب فوراً بعد التحقق من صحة البيانات ─────
+    openWhatsApp(data, labels, region, lang);
+    setState("done");
+
+    // ───── حفظ في الباكند (اختياري — لا يمنع الإرسال إن فشل) ─────
     try {
       if (UNIFIED_API_URL) {
-        // صندوق رسائل الموقع في AzmSmart — من المتصفح مباشرةً كي يرى حدّ المعدّل عنوان الزائر
         const message = [
           data.message.trim(),
           "",
@@ -75,23 +80,13 @@ export function ContactForm({ initial }: { initial?: string }) {
           data.budget ? `${lang === "ar" ? "الميزانية" : "Budget"}: ${data.budget}` : "",
           data.timeline ? `${lang === "ar" ? "البدء" : "Start"}: ${data.timeline}` : "",
         ].filter((l, i) => l || i === 1).join("\n").trim();
-        const r = await fetch(`${UNIFIED_API_URL}/cms/contacts/public`, {
+        fetch(`${UNIFIED_API_URL}/cms/contacts/public`, {
           method: "POST", headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ name: data.name.trim(), email: data.email.trim(), phone: data.phone?.trim() || undefined, service: labels.slice(0, 160), message: message.slice(0, 4000) }),
-        });
-        if (!r.ok) { setState("error"); return; }
-        // إشعار البريد (اختياري — لا يُفشل الإرسال إن تعذّر)
-        fetch("/api/contact", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(data) }).catch(() => {});
-        openWhatsApp(data, labels, region, lang);
-        setState("done");
-        return;
+        }).catch(() => {});
       }
-      const r = await fetch("/api/contact", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(data) });
-      const j = await r.json();
-      if (!r.ok || !j.ok) { setErrors(j.errors ?? {}); setState("error"); return; }
-      openWhatsApp(data, labels, region, lang);
-      setState("done");
-    } catch { setState("error"); }
+      fetch("/api/contact", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(data) }).catch(() => {});
+    } catch { /* لا شيء — الواتساب أُرسل بالفعل */ }
   }
 
   if (state === "done")
