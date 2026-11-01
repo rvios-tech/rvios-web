@@ -1,22 +1,14 @@
 "use client";
 import { useRef, useState } from "react";
 import { Scene } from "@/components/stage/Scene";
-import { Browser } from "@/components/ui/Browser";
-import { Dashboard } from "@/components/azm/Dashboard";
-import { PhoneStore } from "@/components/shop/PhoneStore";
+import { ServiceVisual } from "@/components/services/ServiceVisual";
 import { L } from "@/components/i18n/L";
 import { useLang } from "@/components/i18n/LangProvider";
 import type { StageCfg } from "@/lib/stage/glass";
-import { content, type Service } from "@/lib/content";
+import { content } from "@/lib/content";
 import { ScrollTrigger, useGSAP } from "@/lib/gsap";
 
 const CFG: StageCfg = { d: { x: -1.9, y: 0.12, s: 1.08, tilt: 0.05 }, m: { x: 0, y: 1.75, s: 0.4 }, glow: 0.8 };
-
-function Visual({ s }: { s: Service }) {
-  if (s.visual.kind === "dashboard") return <Dashboard chips={false} tilt={false} />;
-  if (s.visual.kind === "store") return <div className="flex justify-center"><div className="origin-center scale-[.34] sm:scale-[.5] lg:scale-[.66]"><PhoneStore /></div></div>;
-  return <Browser src={s.visual.src} url={s.visual.url} light={s.visual.light} sizes="(max-width:900px) 92vw, 46vw" />;
-}
 
 /** قسم مثبّت: خمس خدمات، ولكل خدمة عمل حقيقي يظهر في إطار زجاجي أمام الشعار المتوهج */
 export function ServicesShowcase() {
@@ -64,7 +56,7 @@ export function ServicesShowcase() {
           </div>
 
           <div className="relative order-1 lg:order-2">
-            <div className="relative aspect-[16/10] w-full">
+            <div className="relative aspect-[16/11] w-full lg:aspect-[16/10]">
               {services.map((sv, n) => (
                 <div
                   key={sv.slug}
@@ -76,7 +68,7 @@ export function ServicesShowcase() {
                     zIndex: n === i ? 2 : 1,
                   }}
                 >
-                  <div className="w-full"><Visual s={sv} /></div>
+                  <div className="w-full"><ServiceVisual s={sv} compact sizes="(max-width:900px) 92vw, 46vw" /></div>
                 </div>
               ))}
             </div>

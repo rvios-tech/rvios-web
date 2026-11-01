@@ -1,12 +1,10 @@
 import type { Metadata } from "next";
 import { Scene } from "@/components/stage/Scene";
 import { Lines, Rise, Curtain } from "@/components/ui/motion";
-import { Browser } from "@/components/ui/Browser";
 import { Steps } from "@/components/ui/Steps";
 import { processOf } from "@/lib/content/process";
 import { Faq } from "@/components/ui/Faq";
-import { Dashboard } from "@/components/azm/Dashboard";
-import { PhoneStore } from "@/components/shop/PhoneStore";
+import { ServiceVisual } from "@/components/services/ServiceVisual";
 import { Closing } from "@/components/layout/Closing";
 import { Testimonials } from "@/components/home/Testimonials";
 import { L } from "@/components/i18n/L";
@@ -80,10 +78,6 @@ const DARK: StageCfg = { d: { x: -1.95, y: 0, s: 1.05 }, m: { x: 0, y: 1.9, s: 0
 
 function ServiceBlock({ s, dark, lang }: { s: Service; dark: boolean; lang: Lang }) {
   const t = T[lang];
-  const visual =
-    s.visual.kind === "dashboard" ? <Dashboard chips={false} />
-    : s.visual.kind === "store" ? <div className="py-6"><PhoneStore /></div>
-    : <Browser src={s.visual.src} url={s.visual.url} light={s.visual.light} sizes="(max-width:1024px) 92vw, 48vw" />;
   return (
     <Scene id={s.slug} theme={dark ? "dark" : "paper"} cfg={dark ? DARK : undefined} className="px-[var(--pad)] py-[clamp(100px,16vh,170px)]">
       <div className="mx-auto grid max-w-[1480px] items-center gap-[6vw] gap-y-14 lg:grid-cols-[1fr_1.1fr]">
@@ -101,7 +95,7 @@ function ServiceBlock({ s, dark, lang }: { s: Service; dark: boolean; lang: Lang
           </Rise>
         </div>
         <div>
-          <Curtain>{visual}</Curtain>
+          <Curtain><ServiceVisual s={s} sizes="(max-width:1024px) 92vw, 48vw" /></Curtain>
           <p className="mt-4 text-[13px] opacity-45">{s.visual.caption}</p>
         </div>
       </div>

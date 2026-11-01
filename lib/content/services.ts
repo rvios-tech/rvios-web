@@ -1,7 +1,20 @@
 export type ServiceVisual =
   | { kind: "image"; src: string; url: string; caption: string; light?: boolean }
-  | { kind: "dashboard"; caption: string }
-  | { kind: "store"; caption: string };
+  | { kind: "devices"; scenes: DeviceScene[]; caption: string }
+  | { kind: "maintenance"; caption: string };
+
+/** شاشة مشروع على الحاسوب والجوال معًا */
+export type DeviceScene = { desk: string; mobile: string; url: string; light?: boolean };
+
+const shot = (slug: string, url: string, light?: boolean): DeviceScene => ({ desk: `/work/${slug}/home.webp`, mobile: `/work/${slug}/mobile.webp`, url, light });
+export const SYSTEM_SCENES: DeviceScene[] = [{ desk: "/work/azmsmart/dashboard.webp", mobile: "/work/azmsmart/mobile.webp", url: "azm.rvios.com/dashboard" }];
+export const STORE_SCENES: DeviceScene[] = [
+  shot("dar-alshal", "dar-alshal.rvios.store", true),
+  shot("nabd-sports", "nabd-sports.rvios.store"),
+  shot("al-reef", "al-reef.rvios.store"),
+  shot("reem-sweets", "reem-sweets.rvios.store", true),
+  shot("tech-plus", "tech-plus.rvios.store"),
+];
 
 export type Service = {
   slug: string;
@@ -60,7 +73,7 @@ export const services: Service[] = [
     ],
     stack: ["Next.js", "NestJS", "Supabase", "PostgreSQL", "PWA"],
     forWho: "الشركات التي تدير عملها بجداول متفرقة ورسائل واتساب، وتحتاج نظاماً واحداً واضحاً.",
-    visual: { kind: "dashboard", caption: "من منتجاتنا — لوحة AzmSmart" },
+    visual: { kind: "devices", scenes: SYSTEM_SCENES, caption: "من منتجاتنا — نظام AzmSmart على الحاسوب والجوال" },
   },
   {
     slug: "stores",
@@ -81,7 +94,7 @@ export const services: Service[] = [
     ],
     stack: ["Next.js", "RVIOS StoreOS", "Stripe", "PostgreSQL", "WhatsApp API"],
     forWho: "العلامات والتجار الذين يريدون متجراً يمثلهم ويبيع، لا صفحة منتجات مكررة من آلاف المتاجر.",
-    visual: { kind: "store", caption: "من منتجاتنا — متجر على RVIOS StoreOS" },
+    visual: { kind: "devices", scenes: STORE_SCENES, caption: "متاجر قائمة على منصة RVIOS Store — على الحاسوب والجوال" },
   },
   {
     slug: "landing-pages",
@@ -123,6 +136,6 @@ export const services: Service[] = [
     ],
     stack: ["Vercel", "Cloudflare", "Lighthouse", "Search Console"],
     forWho: "أصحاب المواقع القائمة الذين يريدون شريكاً تقنياً دائماً بدل البحث عن مطوّر عند كل مشكلة.",
-    visual: { kind: "image", src: "/work/tilal/home.webp", url: "tilal", caption: "من أعمالنا — تلال للمقاولات", light: true },
+    visual: { kind: "maintenance", caption: "لوحة متابعة الصيانة — عرض توضيحي" },
   },
 ];

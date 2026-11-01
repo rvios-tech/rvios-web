@@ -1,4 +1,4 @@
-import type { Service } from "../services";
+import { STORE_SCENES, SYSTEM_SCENES, type Service } from "../services";
 
 export const services: Service[] = [
   {
@@ -41,7 +41,7 @@ export const services: Service[] = [
     ],
     stack: ["Next.js", "NestJS", "Supabase", "PostgreSQL", "PWA"],
     forWho: "Companies running their business on scattered spreadsheets and WhatsApp threads that need one clear system.",
-    visual: { kind: "dashboard", caption: "Our products — the AzmSmart dashboard" },
+    visual: { kind: "devices", scenes: SYSTEM_SCENES, caption: "Our products — the AzmSmart system on desktop and mobile" },
   },
   {
     slug: "stores",
@@ -62,7 +62,7 @@ export const services: Service[] = [
     ],
     stack: ["Next.js", "RVIOS StoreOS", "Stripe", "PostgreSQL", "WhatsApp API"],
     forWho: "Brands and merchants who want a store that represents them and sells — not a product page cloned across thousands of stores.",
-    visual: { kind: "store", caption: "Our products — a store on RVIOS StoreOS" },
+    visual: { kind: "devices", scenes: STORE_SCENES, caption: "Live stores on RVIOS Store — on desktop and mobile" },
   },
   {
     slug: "landing-pages",
@@ -104,6 +104,6 @@ export const services: Service[] = [
     ],
     stack: ["Vercel", "Cloudflare", "Lighthouse", "Search Console"],
     forWho: "Owners of existing websites who want a long-term technical partner instead of hunting for a developer every time something breaks.",
-    visual: { kind: "image", src: "/work/tilal/home.webp", url: "tilal", caption: "Our work — Tilal Contracting", light: true },
+    visual: { kind: "maintenance", caption: "Maintenance monitor — illustrative" },
   },
 ];
