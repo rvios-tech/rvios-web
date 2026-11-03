@@ -265,6 +265,10 @@ html[lang="en"] { --display: var(--font-yapari), system-ui, sans-serif; --headin
   .prose-ar li { position: relative; padding-inline-start: 26px; color: rgba(23, 23, 23, 0.82); }
   .prose-ar li::before { content: ""; position: absolute; inset-inline-start: 3px; top: 0.9em; width: 6px; height: 6px; border-radius: 50%; background: var(--color-red); }
   .prose-ar blockquote { margin: 2.4em 0; padding: 6px 30px 6px 0; padding-inline: 32px 0; border-inline-start: 1px solid var(--color-gold); font-family: var(--heading); font-weight: var(--hw); font-size: clamp(26px, 2.4vw, 34px); line-height: 1.55; color: #171717; }
+  .prose-ar .post-cta { margin: 2.4em 0; padding: 26px 30px; border-radius: 18px; background: #171717; color: #f5efe6; display: grid; gap: 14px; }
+  .prose-ar .post-cta p { margin: 0; color: rgba(245, 239, 230, 0.85); font-size: 17px; line-height: 1.8; }
+  .prose-ar .post-cta a { justify-self: start; display: inline-flex; gap: 10px; align-items: center; border-radius: 999px; padding: 11px 22px; background: var(--color-red); color: #fff; font-size: 15px; font-weight: 600; line-height: 1.4; }
+  html[dir="ltr"] .prose-ar .post-cta a span { transform: scaleX(-1); }
 
   /* ——— النماذج ——— */
   .field { display: grid; gap: 6px; }

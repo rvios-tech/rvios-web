@@ -1,8 +1,9 @@
 import type { Post } from "../posts";
+import { storePosts } from "./posts-stores";
 
 const u = (id: string) => `https://images.unsplash.com/${id}?w=1600&q=75&auto=format&fit=crop`;
 
-export const posts: Post[] = [
+const own: Post[] = [
   {
     slug: "website-design-cost",
     title: "How much does a website cost? A clear pricing guide for 2026",
@@ -230,3 +231,5 @@ export const posts: Post[] = [
     ],
   },
 ];
+
+export const posts: Post[] = [...storePosts, ...own];

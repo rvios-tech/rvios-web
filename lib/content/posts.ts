@@ -1,8 +1,12 @@
+import { storePosts } from "./posts-stores";
+
 export type PostBlock =
   | { t: "p"; v: string }
   | { t: "h2"; v: string; id: string }
   | { t: "quote"; v: string }
-  | { t: "list"; v: string[] };
+  | { t: "list"; v: string[] }
+  /** a highlighted link out of the article — to a store-platform guide or page */
+  | { t: "cta"; v: string; href: string; label: string };
 
 export type Post = {
   slug: string;
@@ -18,7 +22,7 @@ export type Post = {
 
 const u = (id: string) => `https://images.unsplash.com/${id}?w=1600&q=75&auto=format&fit=crop`;
 
-export const posts: Post[] = [
+const own: Post[] = [
   {
     slug: "website-design-cost",
     title: "كم تكلفة تصميم موقع إلكتروني؟ دليل التسعير الواضح لعام 2026",
@@ -246,6 +250,9 @@ export const posts: Post[] = [
     ],
   },
 ];
+
+/** newest first: the e-commerce series leads the journal */
+export const posts: Post[] = [...storePosts, ...own];
 
 export const getPost = (slug: string) => posts.find((p) => p.slug === slug);
 export const readingTime = (p: Post) => {

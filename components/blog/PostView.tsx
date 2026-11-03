@@ -19,6 +19,12 @@ function Render({ b }: { b: PostBlock }) {
     case "h2": return <h2 id={b.id}>{b.v}</h2>;
     case "quote": return <blockquote>{b.v}</blockquote>;
     case "list": return <ul>{b.v.map((x) => <li key={x}>{x}</li>)}</ul>;
+    case "cta": return (
+      <aside className="post-cta">
+        <p>{b.v}</p>
+        <a href={b.href}>{b.label} <span aria-hidden>←</span></a>
+      </aside>
+    );
   }
 }
 
@@ -28,10 +34,13 @@ export function PostView({ p, lang }: { p: Post; lang: Lang }) {
   const toc = p.body.filter((b): b is Extract<PostBlock, { t: "h2" }> => b.t === "h2");
   const related = posts.filter((x) => x.slug !== p.slug).slice(0, 2);
   const url = `${site.url}/${lang}/blog/${p.slug}`;
+  const team = /RVIOS/.test(p.author);
   const jsonLd = {
     "@context": "https://schema.org", "@type": "BlogPosting", headline: p.title, description: p.excerpt,
-    datePublished: p.date, image: p.cover, author: { "@type": "Person", name: p.author },
-    publisher: { "@type": "Organization", name: site.name }, mainEntityOfPage: url,
+    datePublished: p.date, dateModified: p.date, image: p.cover, inLanguage: lang, articleSection: p.category,
+    author: team ? { "@type": "Organization", name: p.author, url: site.url } : { "@type": "Person", name: p.author },
+    publisher: { "@type": "Organization", name: site.name, url: site.url, logo: { "@type": "ImageObject", url: `${site.url}/icon.png` } },
+    mainEntityOfPage: url, url,
   };
 
   return (
