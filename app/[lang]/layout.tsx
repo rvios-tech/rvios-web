@@ -46,6 +46,11 @@ export async function generateMetadata({ params }: LayoutProps<"/[lang]">): Prom
     openGraph: { type: "website", locale: lang === "ar" ? "ar_SA" : "en_US", alternateLocale: lang === "ar" ? ["en_US"] : ["ar_SA"], siteName: t.legal, title: t.title, description: t.description },
     twitter: { card: "summary_large_image", title: t.title, description: t.description },
     alternates: { canonical: `/${lang}`, languages: { ar: "/ar", en: "/en", "x-default": "/ar" } },
+    // Search Console / Bing Webmaster ownership — set the tokens in the deployment's environment
+    verification: {
+      ...(process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION ? { google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION } : {}),
+      ...(process.env.NEXT_PUBLIC_BING_SITE_VERIFICATION ? { other: { "msvalidate.01": process.env.NEXT_PUBLIC_BING_SITE_VERIFICATION } } : {}),
+    },
   };
 }
 
