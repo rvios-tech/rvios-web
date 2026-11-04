@@ -1,4 +1,6 @@
 import type { Metadata, Viewport } from "next";
+import { Assistant } from "@/components/assistant/Assistant";
+import { UNIFIED_API_URL } from "@/lib/content/links";
 import localFont from "next/font/local";
 import Script from "next/script";
 import { GA_IDS, analyticsOn, gtagInit } from "@/lib/content/analytics";
@@ -125,6 +127,8 @@ export default async function RootLayout({ children, params }: LayoutProps<"/[la
           <Preloader />
           <Header />
           <main>{children}</main>
+          {/* مساعد الزوار — يظهر حين يكون الباكند مضبوطًا */}
+          {UNIFIED_API_URL && <Assistant site="web" lang={lang} api={UNIFIED_API_URL} />}
         </LangProvider>
       </body>
     </html>
