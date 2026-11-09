@@ -41,7 +41,7 @@ export function Statement() {
           <p data-rise className="serif hidden max-w-[16ch] text-[26px] leading-snug text-ink lg:block">{t.side}</p>
         </Rise>
         <div>
-          <FillWords className="serif text-[clamp(28px,3.3vw,54px)] leading-[1.45] text-ink" text={t.text} />
+          <FillWords className="serif text-[clamp(28px,3.3vw,40px)] leading-[1.45] text-ink" text={t.text} />
           <Rise className="mt-16 grid gap-8 border-t border-hair-ink pt-10 md:grid-cols-3" stagger={0.1}>
             {t.pillars.map((p, i) => (
               <div data-rise key={p.t}>
