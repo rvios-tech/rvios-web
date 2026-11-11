@@ -5,6 +5,10 @@ import { BlogIndex } from "@/components/blog/BlogIndex";
 import { Closing } from "@/components/layout/Closing";
 import type { StageCfg } from "@/lib/stage/glass";
 import { alt, langOf } from "@/lib/i18n/page";
+import { allPosts } from "@/lib/content/cms";
+
+/** articles published from AzmSmart appear within five minutes */
+export const revalidate = 300;
 
 const T = {
   ar: {
@@ -33,6 +37,7 @@ export async function generateMetadata({ params }: PageProps<"/[lang]/blog">): P
 export default async function BlogPage({ params }: PageProps<"/[lang]/blog">) {
   const lang = await langOf(params);
   const t = T[lang];
+  const posts = await allPosts(lang);
   return (
     <>
       <Scene id="blog-hero" cfg={HERO} className="flex min-h-[80svh] flex-col justify-end px-[var(--pad)] pt-[44vh] pb-[10vh] lg:justify-center lg:pt-32">
@@ -43,7 +48,7 @@ export default async function BlogPage({ params }: PageProps<"/[lang]/blog">) {
         </div>
       </Scene>
       <Scene id="blog-list" theme="paper" className="px-[var(--pad)] py-[clamp(90px,14vh,150px)]">
-        <div className="mx-auto max-w-[1480px]"><BlogIndex /></div>
+        <div className="mx-auto max-w-[1480px]"><BlogIndex posts={posts} /></div>
       </Scene>
       <Closing lines={t.closing} />
     </>

@@ -64,7 +64,12 @@ const nextConfig: NextConfig = {
   },
   images: {
     formats: ["image/avif", "image/webp"],
-    remotePatterns: [{ protocol: "https", hostname: "images.unsplash.com" }],
+    remotePatterns: [
+      { protocol: "https", hostname: "images.unsplash.com" },
+      // blog covers uploaded from AzmSmart (R2 public bucket / own CDN)
+      { protocol: "https", hostname: "**.r2.dev" },
+      { protocol: "https", hostname: "**.rvios.com" },
+    ],
   },
 };
 

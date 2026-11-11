@@ -3,7 +3,7 @@ import Image from "next/image";
 import { L as Link } from "@/components/i18n/L";
 import { useLang } from "@/components/i18n/LangProvider";
 import { useMemo, useState } from "react";
-import { content, formatDate, readingTime } from "@/lib/content";
+import { content, formatDate, readingTime, type Post } from "@/lib/content";
 import { Curtain } from "@/components/ui/motion";
 
 const T = {
@@ -11,10 +11,10 @@ const T = {
   en: { all: "All", featured: "Featured", min: "min read", allPosts: "All articles", filter: "Filter by category", empty: "No articles in this category yet." },
 };
 
-export function BlogIndex() {
+export function BlogIndex({ posts: given }: { posts?: Post[] } = {}) {
   const lang = useLang();
   const t = T[lang];
-  const { posts } = content(lang);
+  const posts = given ?? content(lang).posts;
   const cats = [t.all, ...Array.from(new Set(posts.map((p) => p.category)))];
   const [cat, setCat] = useState(t.all);
   const featured = posts.find((p) => p.featured) ?? posts[0];
