@@ -7,7 +7,7 @@ import type { StageCfg } from "@/lib/stage/glass";
 import { alt, langOf } from "@/lib/i18n/page";
 import { allPosts } from "@/lib/content/cms";
 
-/** articles published from AzmSmart appear within five minutes */
+/** articles published from RVIOS OS appear within five minutes */
 export const revalidate = 300;
 
 const T = {

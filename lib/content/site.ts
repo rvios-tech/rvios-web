@@ -25,7 +25,7 @@ export const siteText = {
     legal: "ريفيوس للتصميم والتطوير والحلول الرقمية",
     title: "ريفيوس RVIOS — تصميم وتطوير المواقع والمتاجر والأنظمة والحلول الرقمية",
     description:
-      "ريفيوس (RVIOS) للتصميم والتطوير والحلول الرقمية: تصميم مواقع إلكترونية، وإنشاء متاجر إلكترونية، وبرمجة أنظمة وتطبيقات ويب وجوال، وتصميم هويات بصرية وصفحات هبوط، وصيانة وتحسين للظهور في محركات البحث — في السعودية واليمن والخليج. ومن منتجاتنا منصة RVIOS StoreOS ونظام AzmSmart.",
+      "ريفيوس (RVIOS) للتصميم والتطوير والحلول الرقمية: تصميم مواقع إلكترونية، وإنشاء متاجر إلكترونية، وبرمجة أنظمة وتطبيقات ويب وجوال، وتصميم هويات بصرية وصفحات هبوط، وصيانة وتحسين للظهور في محركات البحث — في السعودية واليمن والخليج. ومن منتجاتنا منصة RVIOS StoreOS ونظام RVIOS OS.",
     wa: "مرحباً RVIOS، أود الحديث عن مشروع",
   },
   en: {
@@ -33,7 +33,7 @@ export const siteText = {
     legal: "RVIOS Technology For Design, Develop and Digital Solutions",
     title: "RVIOS — Web Design, E-commerce, Software & Digital Solutions",
     description:
-      "RVIOS Technology For Design, Develop and Digital Solutions: website design and development, online stores, custom systems, web and mobile apps, brand identity, landing pages, maintenance and SEO — across Saudi Arabia, Yemen and the Gulf. Our products include the RVIOS StoreOS e-commerce platform and the AzmSmart business system.",
+      "RVIOS Technology For Design, Develop and Digital Solutions: website design and development, online stores, custom systems, web and mobile apps, brand identity, landing pages, maintenance and SEO — across Saudi Arabia, Yemen and the Gulf. Our products include the RVIOS StoreOS e-commerce platform and the RVIOS OS business system.",
     wa: "Hello RVIOS, I'd like to talk about a project",
   },
 } satisfies Record<Lang, Record<string, string>>;
@@ -43,13 +43,13 @@ const navLabels = {
   en: { services: "Services", work: "Work", blog: "Journal", contact: "Contact" },
 };
 
-/** روابط الرأس بالترتيب — AzmSmart وStoreOS تفتحان موقعيهما: الخدمات، الأعمال، AzmSmart، RVIOS StoreOS، المدونة، تواصل */
+/** روابط الرأس بالترتيب — RVIOS OS وStoreOS تفتحان موقعيهما: الخدمات، الأعمال، RVIOS OS، RVIOS StoreOS، المدونة، تواصل */
 export const navOf = (lang: Lang) => {
   const n = navLabels[lang];
   return [
     { href: "/services", label: n.services },
     { href: "/work", label: n.work },
-    { href: AZMSMART_URL, label: "AzmSmart", latin: true },
+    { href: AZMSMART_URL, label: "RVIOS OS", latin: true },
     { href: STOREOS_URL, label: "RVIOS StoreOS", latin: true },
     { href: "/blog", label: n.blog },
     { href: "/contact", label: n.contact },
@@ -74,7 +74,7 @@ export const keywordsOf: Record<Lang, string[]> = {
     "تصميم صفحات هبوط", "تصميم هوية بصرية", "تصميم شعار", "تصميم ملف تعريفي", "تصميم بروفايل شركة",
     "صيانة مواقع", "دعم فني للمواقع", "استضافة مواقع", "تحسين محركات البحث", "سيو", "SEO", "تسويق رقمي",
     "حلول رقمية", "تحول رقمي", "حلول تقنية للشركات", "شركة برمجة", "شركة تقنية",
-    "عزم سمارت", "AzmSmart", "RVIOS StoreOS",
+    "RVIOS OS", "RVIOS OS", "RVIOS StoreOS",
   ],
   en: [
     "RVIOS", "RVIOS Technology", "RVIOS Technology For Design, Develop and Digital Solutions",
@@ -86,6 +86,6 @@ export const keywordsOf: Record<Lang, string[]> = {
     "landing page design", "brand identity design", "logo design", "company profile design",
     "website maintenance", "web hosting", "SEO services", "search engine optimization", "digital marketing",
     "digital solutions", "digital transformation", "software company", "technology company",
-    "AzmSmart", "RVIOS StoreOS",
+    "RVIOS OS", "RVIOS StoreOS",
   ],
 };

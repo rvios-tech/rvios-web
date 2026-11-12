@@ -6,7 +6,7 @@ import { findPost } from "@/lib/content/cms";
 import { hasLocale, locales } from "@/lib/i18n/config";
 import { alt } from "@/lib/i18n/page";
 
-/** coded articles are prebuilt; ones published from AzmSmart render on first visit and refresh every 5 min */
+/** coded articles are prebuilt; ones published from RVIOS OS render on first visit and refresh every 5 min */
 export const revalidate = 300;
 export const dynamicParams = true;
 

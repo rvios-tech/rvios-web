@@ -41,7 +41,7 @@ export const services: Service[] = [
     ],
     stack: ["Next.js", "NestJS", "Supabase", "PostgreSQL", "PWA"],
     forWho: "Companies running their business on scattered spreadsheets and WhatsApp threads that need one clear system.",
-    visual: { kind: "devices", scenes: SYSTEM_SCENES, caption: "Our products — the AzmSmart system on desktop and mobile" },
+    visual: { kind: "devices", scenes: SYSTEM_SCENES, caption: "Our products — the RVIOS OS system on desktop and mobile" },
   },
   {
     slug: "stores",

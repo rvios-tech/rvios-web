@@ -73,7 +73,7 @@ export const services: Service[] = [
     ],
     stack: ["Next.js", "NestJS", "Supabase", "PostgreSQL", "PWA"],
     forWho: "الشركات التي تدير عملها بجداول متفرقة ورسائل واتساب، وتحتاج نظاماً واحداً واضحاً.",
-    visual: { kind: "devices", scenes: SYSTEM_SCENES, caption: "من منتجاتنا — نظام AzmSmart على الحاسوب والجوال" },
+    visual: { kind: "devices", scenes: SYSTEM_SCENES, caption: "من منتجاتنا — نظام RVIOS OS على الحاسوب والجوال" },
   },
   {
     slug: "stores",

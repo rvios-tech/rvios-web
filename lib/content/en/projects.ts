@@ -31,7 +31,7 @@ export const projects: Project[] = [
     cover: `${W}/rvios-store/home.webp`,
     coverUrl: "store.rvios.com",
     summary:
-      "A platform that gives a merchant a complete online store in minutes: pick a template that suits the products, share one link, and receive orders neatly in the AzmSmart dashboard.",
+      "A platform that gives a merchant a complete online store in minutes: pick a template that suits the products, share one link, and receive orders neatly in the RVIOS OS dashboard.",
     challenge:
       "Most merchants in the region sell over WhatsApp and Instagram: scattered photos, prices retyped in every chat, and orders lost between messages. Global platforms are expensive and don't support local payment or Arabic properly.",
     approach:
@@ -42,7 +42,7 @@ export const projects: Project[] = [
       "Cart and orders saved before WhatsApp",
       "Local transfer payment with receipt",
       "Real reviews from buyers",
-      "Fully connected to the AzmSmart dashboard",
+      "Fully connected to the RVIOS OS dashboard",
     ],
     url: "https://store.rvios.com",
     blocks: [
@@ -50,45 +50,6 @@ export const projects: Project[] = [
       { t: "browser", src: `${W}/rvios-store/home-2.webp`, url: "store.rvios.com", caption: "Every store works on desktop and mobile, and is run from a phone" },
       { t: "browser", src: `${W}/rvios-store/templates.webp`, url: "store.rvios.com/templates", caption: "The template gallery — a live preview of each template before choosing" },
       { t: "browser", src: `${W}/rvios-store/create.webp`, url: "store.rvios.com/create", caption: "Creating a store: template, then plan, then store details" },
-    ],
-  },
-  {
-    slug: "azmsmart",
-    name: "AzmSmart",
-    latin: "Business management system",
-    client: "An RVIOS product",
-    location: "Yemen, Saudi Arabia & the Gulf",
-    year: "2026",
-    tags: ["ERP system", "Dashboard", "Multi-tenant SaaS"],
-    categories: ["software"],
-    mat: "#120C0B",
-    dark: true,
-    accent: "#C1272D",
-    cover: `${W}/azmsmart/dashboard.webp`,
-    coverUrl: "azm.rvios.com",
-    summary:
-      "One system that runs the whole company: the online store, orders and stock, clients and invoices, projects and tasks, and the team and its permissions — in a refined Arabic interface on desktop and mobile.",
-    challenge:
-      "Small and mid-sized companies run their business across Excel sheets, WhatsApp groups and separate tools that don't talk to each other. The result: numbers that don't match and decisions made without the full picture.",
-    approach:
-      "We built a multi-company system on one unified backend: every company is isolated with its own data, and every member sees what their permissions allow. The online store on RVIOS Store connects to it directly, so an order placed in the store appears at once in orders, reports and stock. For anyone who wants to look before subscribing, a full demo with realistic data opens in one click.",
-    deliverables: [
-      "Dashboard with live indicators",
-      "Store, orders, stock and reviews",
-      "Clients and invoices in every state",
-      "Projects, tasks and meetings",
-      "Team, roles and permissions",
-      "Reports exportable to Excel",
-    ],
-    note: "Try the full demo without signing up at azm.rvios.com/demo",
-    url: "https://azm.rvios.com/demo",
-    blocks: [
-      { t: "devices", desk: `${W}/azmsmart/dashboard.webp`, mobile: `${W}/azmsmart/mobile.webp`, url: "azm.rvios.com/dashboard", caption: "Store overview — desktop and mobile" },
-      { t: "browser", src: `${W}/azmsmart/orders.webp`, url: "azm.rvios.com/orders", caption: "Orders: status, payment and customer in one table" },
-      { t: "browser", src: `${W}/azmsmart/products.webp`, url: "azm.rvios.com/products", caption: "Products, stock and prices" },
-      { t: "browser", src: `${W}/azmsmart/reports.webp`, url: "azm.rvios.com/reports", caption: "Reports: sales and visits day by day, exportable" },
-      { t: "browser", src: `${W}/azmsmart/invoices.webp`, url: "azm.rvios.com/invoices", caption: "Invoices in every state: paid, partial, overdue" },
-      { t: "browser", src: `${W}/azmsmart/projects.webp`, url: "azm.rvios.com/projects", caption: "Projects, tasks and delivery milestones" },
     ],
   },
   {

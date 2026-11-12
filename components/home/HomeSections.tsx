@@ -34,7 +34,7 @@ const T = {
     sCta: "اكتشف RVIOS StoreOS",
     aHead: ["عملك ومتجرك،", "في نظام واحد."],
     aLead: "الطلب الذي يصل من متجرك يُخصم من المخزون، ويُسجَّل في المالية، ويظهر في ملف العميل تلقائياً. بلا إدخال مكرر ولا جداول متفرقة.",
-    aCta: "استكشف AzmSmart",
+    aCta: "استكشف RVIOS OS",
     process: "طريقة العمل", processHead: ["من الفكرة", "إلى الإطلاق."],
     blog: "المدونة", blogHead: ["أفكار عن بناء الأعمال رقمياً."], blogAll: "كل المقالات",
   },
@@ -47,7 +47,7 @@ const T = {
     sCta: "Discover RVIOS StoreOS",
     aHead: ["Your business and store,", "in one system."],
     aLead: "An order from your store is deducted from inventory, booked in finance and added to the customer's profile — automatically. No double entry, no scattered spreadsheets.",
-    aCta: "Explore AzmSmart",
+    aCta: "Explore RVIOS OS",
     process: "How we work", processHead: ["From idea", "to launch."],
     blog: "Journal", blogHead: ["Ideas on building businesses digitally."], blogAll: "All articles",
   },
@@ -82,7 +82,7 @@ export function Products() {
         </Rise>
       </Scene>
 
-      {/* RVIOS StoreOS أولاً ثم AzmSmart */}
+      {/* RVIOS StoreOS أولاً ثم RVIOS OS */}
       <Scene id="storeos" cfg={STORE} className="px-[var(--pad)] py-[clamp(90px,14vh,160px)]">
         <div className="mx-auto grid max-w-[1480px] items-center gap-14 lg:grid-cols-[1.1fr_1fr]">
           <div>

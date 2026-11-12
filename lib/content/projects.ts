@@ -66,7 +66,7 @@ export const projects: Project[] = [
     cover: `${W}/rvios-store/home.webp`,
     coverUrl: "store.rvios.com",
     summary:
-      "منصة تبني للتاجر متجرًا إلكترونيًا كاملًا في دقائق: يختار قالبًا يليق ببضاعته، ويحصل على رابط واحد يشاركه، وتصله الطلبات منظّمة في لوحة تحكم عزم سمارت.",
+      "منصة تبني للتاجر متجرًا إلكترونيًا كاملًا في دقائق: يختار قالبًا يليق ببضاعته، ويحصل على رابط واحد يشاركه، وتصله الطلبات منظّمة في لوحة تحكم RVIOS OS.",
     challenge:
       "أغلب التجار في المنطقة يبيعون عبر واتساب وإنستغرام: صور متفرقة، وأسعار تُكتب في كل محادثة، وطلبات تضيع بين الرسائل. والمنصات العالمية مكلفة، ولا تدعم الدفع المحلي ولا العربية كما ينبغي.",
     approach:
@@ -77,7 +77,7 @@ export const projects: Project[] = [
       "سلة وطلبات تُحفظ قبل واتساب",
       "دفع بالتحويل المحلي مع إيصال",
       "تقييمات حقيقية من المشترين",
-      "ربط كامل بلوحة تحكم عزم سمارت",
+      "ربط كامل بلوحة تحكم RVIOS OS",
     ],
     url: "https://store.rvios.com",
     blocks: [
@@ -85,45 +85,6 @@ export const projects: Project[] = [
       { t: "browser", src: `${W}/rvios-store/home-2.webp`, url: "store.rvios.com", caption: "كل متجر يعمل على الحاسوب والجوال، ويُدار من الهاتف" },
       { t: "browser", src: `${W}/rvios-store/templates.webp`, url: "store.rvios.com/templates", caption: "معرض القوالب — معاينة حية لكل قالب قبل اختياره" },
       { t: "browser", src: `${W}/rvios-store/create.webp`, url: "store.rvios.com/create", caption: "إنشاء المتجر: القالب، ثم الباقة، ثم بيانات المتجر" },
-    ],
-  },
-  {
-    slug: "azmsmart",
-    name: "AzmSmart",
-    latin: "نظام إدارة الأعمال",
-    client: "منتج من RVIOS",
-    location: "اليمن والسعودية والخليج",
-    year: "2026",
-    tags: ["نظام ERP", "لوحة تحكم", "SaaS متعدد الشركات"],
-    categories: ["software"],
-    mat: "#120C0B",
-    dark: true,
-    accent: "#C1272D",
-    cover: `${W}/azmsmart/dashboard.webp`,
-    coverUrl: "azm.rvios.com",
-    summary:
-      "نظام واحد يدير الشركة كلها: المتجر الإلكتروني والطلبات والمخزون، والعملاء والفواتير، والمشاريع والمهام، والفريق وصلاحياته — بواجهة عربية فخمة على الحاسوب والجوال.",
-    challenge:
-      "الشركات الصغيرة والمتوسطة تدير أعمالها بين جداول Excel ومجموعات واتساب وبرامج متفرقة لا يكلّم بعضها بعضًا. النتيجة أرقام لا تتطابق، وقرارات تُتخذ بلا صورة كاملة.",
-    approach:
-      "بنينا نظامًا متعدد الشركات على خادم موحّد: كل شركة معزولة ببياناتها، وكل عضو يرى ما تسمح به صلاحياته. المتجر الإلكتروني على منصة RVIOS Store متصل به مباشرة، فالطلب الذي يصل من المتجر يظهر فورًا في الطلبات والتقارير والمخزون. ولمن يريد أن يرى قبل أن يشترك، عرض توضيحي كامل ببيانات واقعية يُفتح بنقرة.",
-    deliverables: [
-      "لوحة تحكم بمؤشرات حيّة",
-      "المتجر والطلبات والمخزون والتقييمات",
-      "العملاء والفواتير بكل حالاتها",
-      "المشاريع والمهام والاجتماعات",
-      "الفريق والأدوار والصلاحيات",
-      "تقارير قابلة للتصدير إلى Excel",
-    ],
-    note: "جرّب العرض التوضيحي الكامل دون تسجيل من azm.rvios.com/demo",
-    url: "https://azm.rvios.com/demo",
-    blocks: [
-      { t: "devices", desk: `${W}/azmsmart/dashboard.webp`, mobile: `${W}/azmsmart/mobile.webp`, url: "azm.rvios.com/dashboard", caption: "نظرة عامة على المتجر — الحاسوب والجوال" },
-      { t: "browser", src: `${W}/azmsmart/orders.webp`, url: "azm.rvios.com/orders", caption: "الطلبات: الحالة، والدفع، والعميل، في جدول واحد" },
-      { t: "browser", src: `${W}/azmsmart/products.webp`, url: "azm.rvios.com/products", caption: "المنتجات والمخزون والأسعار" },
-      { t: "browser", src: `${W}/azmsmart/reports.webp`, url: "azm.rvios.com/reports", caption: "التقارير: المبيعات والزيارات يومًا بيوم، قابلة للتصدير" },
-      { t: "browser", src: `${W}/azmsmart/invoices.webp`, url: "azm.rvios.com/invoices", caption: "الفواتير بكل حالاتها: مدفوعة، جزئية، متأخرة" },
-      { t: "browser", src: `${W}/azmsmart/projects.webp`, url: "azm.rvios.com/projects", caption: "المشاريع والمهام ومراحل التسليم" },
     ],
   },
   {

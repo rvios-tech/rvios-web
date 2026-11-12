@@ -1,4 +1,4 @@
-/* Articles the RVIOS team publishes from AzmSmart (platform → «الموقع والمدونة» → المدونة), read from
+/* Articles the RVIOS team publishes from RVIOS OS (platform → «الموقع والمدونة» → المدونة), read from
    the unified backend's public CMS (`GET /cms/public/posts`) and shown beside the articles written in
    code. Server-side only, cached 5 minutes. If the backend is unreachable the blog simply shows the
    in-code articles — a CMS outage never empties the journal.

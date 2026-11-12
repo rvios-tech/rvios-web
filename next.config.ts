@@ -53,20 +53,22 @@ const nextConfig: NextConfig = {
   },
   /**
    * صفحتا المنتجين انتقلتا إلى موقعيهما: StoreOS إلى واجهة منصة المتاجر،
-   * وAzmSmart إلى صفحته الترحيبية في النظام نفسه. الروابط القديمة (مشاركات،
+   * وRVIOS OS إلى صفحته الترحيبية في النظام نفسه. الروابط القديمة (مشاركات،
    * محرّكات بحث) تُحوَّل ولا تسقط.
    */
   async redirects() {
     return [
       { source: "/:lang(ar|en)/storeos", destination: STOREOS_URL, permanent: false },
       { source: "/:lang(ar|en)/azmsmart", destination: AZMSMART_URL, permanent: false },
+      // صفحة دراسة حالة RVIOS OS حُذفت — النظام صار RVIOS OS وصفحته الترحيبية فيه
+      { source: "/:lang(ar|en)/work/azmsmart", destination: "/:lang/work", permanent: true },
     ];
   },
   images: {
     formats: ["image/avif", "image/webp"],
     remotePatterns: [
       { protocol: "https", hostname: "images.unsplash.com" },
-      // blog covers uploaded from AzmSmart (R2 public bucket / own CDN)
+      // blog covers uploaded from RVIOS OS (R2 public bucket / own CDN)
       { protocol: "https", hostname: "**.r2.dev" },
       { protocol: "https", hostname: "**.rvios.com" },
     ],
