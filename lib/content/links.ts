@@ -7,7 +7,9 @@
  */
 const trim = (u: string) => u.replace(/\/+$/, "");
 
-export const STOREOS_URL = trim(process.env.NEXT_PUBLIC_STOREOS_URL ?? "http://store.rvios.com");
+export const STOREOS_URL = trim(process.env.NEXT_PUBLIC_STOREOS_URL ?? "https://store.rvios.com");
+/** نسخة أندرويد من تطبيق RVIOS — تُستضاف على منصة المتاجر وتُنزَّل مباشرة (Content-Disposition: attachment) */
+export const APK_URL = trim(process.env.NEXT_PUBLIC_APP_APK_URL ?? `${STOREOS_URL}/download/rvios.apk`);
 export const AZMSMART_URL = trim(process.env.NEXT_PUBLIC_AZMSMART_URL ?? "http://azm.rvios.com");
 
 /**

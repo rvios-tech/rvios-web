@@ -5,12 +5,12 @@ import { Lines, Rise, Curtain } from "@/components/ui/motion";
 import { Steps } from "@/components/ui/Steps";
 import { processOf } from "@/lib/content/process";
 import { AppShowcase } from "@/components/home/AppShowcase";
-import { PhoneStore } from "@/components/shop/PhoneStore";
+import { StoreShowcase } from "@/components/home/StoreShowcase";
 import { L } from "@/components/i18n/L";
 import { useLang } from "@/components/i18n/LangProvider";
 import type { StageCfg } from "@/lib/stage/glass";
 import { content, formatDate } from "@/lib/content";
-import { STOREOS_URL } from "@/lib/content/links";
+import { APK_URL, STOREOS_URL } from "@/lib/content/links";
 
 /* رموز خطية رفيعة لكل منتج */
 export const glyphs: Record<string, React.ReactNode> = {
@@ -29,13 +29,16 @@ const T = {
     pLabel: "منظومة RVIOS للتجارة", pHead: ["متجرك، تطبيقك،", "ولوحتك — منظومة واحدة."],
     pLead: "منصة متاجر وتطبيق جوال ولوحة تحكم تعمل معًا: ما تغيّره في واحد يظهر في الكل، وطلباتك تصلك أينما كنت.",
     sHead: ["متجرك جاهز", "قبل أن تبرد قهوتك."],
-    sLead: "أنشئ متجرك الإلكتروني بنفسك على RVIOS StoreOS، أدِر منتجاتك وطلباتك من مكان واحد، واستقبل الطلبات مباشرة عبر واتساب.",
-    sPoints: ["رابط خاص لمتجرك، ويمكن ربط نطاقك", "باقة مجانية حتى 10 منتجات", "الشعار والألوان والتصنيفات بيدك"],
-    sCta: "اكتشف RVIOS StoreOS",
+    sLead: "افتح متجرك على RVIOS Store بقالب من ثمانية عشر قالبًا احترافيًا — لكل قالب هيكله وحركته وإحساسه — برابط خاص ودومين إن شئت، وطلبات تُحفظ ثم تصلك على واتساب وفي تطبيق RVIOS.",
+    sPoints: ["رابط خاص فوري، ودومينك على الباقات المدفوعة", "الدفع عند الاستلام والكريمي وجيب وجوالي", "متجرك يُدار من جوالك ومن لوحة التحكم"],
+    sStats: [["١٨", "قالبًا احترافيًا"], ["٠٪", "عمولة على مبيعاتك"], ["دقائق", "حتى يعمل متجرك"]],
+    sCta: "افتح متجرك مجانًا",
+    sAlt: "تصفّح القوالب",
     aHead: ["متجرك كله", "في جيبك."],
     aLead: "تطبيق RVIOS: افتح متجرك من جوالك، واختر قالبه بمعاينة حية بشكل الجوال والمتصفح، وصمّمه بلمساتك، وتابع كل طلب لحظة وصوله.",
     aPoints: ["معاينة حية للقوالب الثمانية عشر", "تصميم المتجر وصور المنتجات من الجوال", "إشعار فوري مع كل طلب جديد", "الباقات والدفع بالكريمي وجيب وجوالي"],
-    aCta: "حمّل التطبيق",
+    aCta: "حمّل التطبيق لأندرويد",
+    aMore: "تفاصيل التطبيق",
     process: "طريقة العمل", processHead: ["من الفكرة", "إلى الإطلاق."],
     blog: "المدونة", blogHead: ["أفكار عن بناء الأعمال رقمياً."], blogAll: "كل المقالات",
   },
@@ -43,13 +46,16 @@ const T = {
     pLabel: "The RVIOS commerce suite", pHead: ["Your store, your app,", "your dashboard — one suite."],
     pLead: "A store platform, a mobile app and a dashboard that work as one: change it in one place, see it everywhere, and get orders wherever you are.",
     sHead: ["Your store is live", "before your coffee cools."],
-    sLead: "Build your online store yourself on RVIOS StoreOS, manage products and orders in one place, and receive orders straight to WhatsApp.",
-    sPoints: ["Your own store link, with custom domains", "Free plan for up to 10 products", "Your logo, colours and categories"],
-    sCta: "Discover RVIOS StoreOS",
+    sLead: "Open your store on RVIOS Store with one of eighteen professional templates — each with its own structure, motion and feel — your own link or domain, and orders saved then sent to you on WhatsApp and in the RVIOS app.",
+    sPoints: ["Instant store link, your own domain on paid plans", "Cash on delivery and local transfers built in", "Run it from your phone and the dashboard"],
+    sStats: [["18", "pro templates"], ["0%", "commission on sales"], ["Minutes", "to go live"]],
+    sCta: "Open your store free",
+    sAlt: "Browse templates",
     aHead: ["Your whole store", "in your pocket."],
     aLead: "The RVIOS app: open your store from your phone, pick its template with a live phone and desktop preview, design it your way, and follow every order the moment it arrives.",
     aPoints: ["Live preview of all 18 templates", "Store design and product photos from your phone", "Instant alert for every new order", "Plans and local payments built in"],
-    aCta: "Get the app",
+    aCta: "Download for Android",
+    aMore: "About the app",
     process: "How we work", processHead: ["From idea", "to launch."],
     blog: "Journal", blogHead: ["Ideas on building businesses digitally."], blogAll: "All articles",
   },
@@ -86,21 +92,27 @@ export function Products() {
 
       {/* المنصة ثم التطبيق */}
       <Scene id="storeos" cfg={STORE} className="px-[var(--pad)] py-[clamp(90px,14vh,160px)]">
-        <div className="mx-auto grid max-w-[1480px] items-center gap-14 lg:grid-cols-[1.1fr_1fr]">
+        <div className="mx-auto grid max-w-[1480px] items-center gap-14 lg:grid-cols-[1fr_1.05fr]">
           <div>
             <span className="label latin">{store.name}</span>
             <Lines className="h2 mt-6" lines={t.sHead} />
             <Rise>
-              <p data-rise className="lead mt-6 max-w-[42ch] text-mist">{t.sLead}</p>
+              <p data-rise className="lead mt-6 max-w-[46ch] text-mist">{t.sLead}</p>
               <ul data-rise className="mt-8 grid gap-3 text-[15px]">
                 {t.sPoints.map((f) => (
                   <li key={f} className="flex items-baseline gap-4"><i className="h-1.5 w-1.5 flex-none rounded-full bg-ruby" />{f}</li>
                 ))}
               </ul>
-              <L data-rise href={STOREOS_URL} className="btn btn-ruby mt-9">{t.sCta}</L>
+              <div data-rise className="sw-stats">
+                {t.sStats.map(([n, l]) => <div key={l}><b>{n}</b><span>{l}</span></div>)}
+              </div>
+              <div data-rise className="mt-9 flex flex-wrap gap-3">
+                <L href={STOREOS_URL} className="btn btn-ruby">{t.sCta}</L>
+                <L href={`${STOREOS_URL}/templates`} className="btn">{t.sAlt}</L>
+              </div>
             </Rise>
           </div>
-          <PhoneStore sceneCfg={STORE} />
+          <StoreShowcase />
         </div>
       </Scene>
 
@@ -116,7 +128,13 @@ export function Products() {
                   <li key={f} className="flex items-baseline gap-4"><i className="h-1.5 w-1.5 flex-none rounded-full bg-gold" />{f}</li>
                 ))}
               </ul>
-              <L data-rise href={app.href} className="btn btn-gold mt-9">{t.aCta}</L>
+              <div data-rise className="mt-9 flex flex-wrap gap-3">
+                <a href={APK_URL} download className="btn btn-gold">
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M17.6 9.48l1.84-3.18a.38.38 0 10-.66-.38l-1.86 3.22a11.4 11.4 0 00-9.84 0L5.22 5.92a.38.38 0 10-.66.38L6.4 9.48A10.8 10.8 0 001 18h22a10.8 10.8 0 00-5.4-8.52zM7 15.25a1.25 1.25 0 110-2.5 1.25 1.25 0 010 2.5zm10 0a1.25 1.25 0 110-2.5 1.25 1.25 0 010 2.5z" /></svg>
+                  {t.aCta}
+                </a>
+                <L href={app.href} className="btn">{t.aMore}</L>
+              </div>
             </Rise>
           </div>
           <AppShowcase />
