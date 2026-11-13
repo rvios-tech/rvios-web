@@ -4,50 +4,52 @@ import { Scene } from "@/components/stage/Scene";
 import { Lines, Rise, Curtain } from "@/components/ui/motion";
 import { Steps } from "@/components/ui/Steps";
 import { processOf } from "@/lib/content/process";
-import { Dashboard } from "@/components/azm/Dashboard";
+import { AppShowcase } from "@/components/home/AppShowcase";
 import { PhoneStore } from "@/components/shop/PhoneStore";
 import { L } from "@/components/i18n/L";
 import { useLang } from "@/components/i18n/LangProvider";
 import type { StageCfg } from "@/lib/stage/glass";
 import { content, formatDate } from "@/lib/content";
-import { AZMSMART_URL, STOREOS_URL } from "@/lib/content/links";
+import { STOREOS_URL } from "@/lib/content/links";
 
 /* رموز خطية رفيعة لكل منتج */
 export const glyphs: Record<string, React.ReactNode> = {
   storeos: <path d="M8 18h32l-3 22H11zM16 18v-4a8 8 0 0116 0v4" />,
-  azmsmart: <path d="M6 40h36M12 34V22M20 34V12M28 34v-8M36 34V16" />,
-  azm: <><rect x="14" y="6" width="20" height="36" rx="5" /><path d="M21 36h6" /></>,
+  app: <><rect x="14" y="6" width="20" height="36" rx="5" /><path d="M21 36h6M19 16h10M19 22h6" /></>,
+  custom: <path d="M10 38l6-2 20-20-4-4-20 20-2 6zM28 12l4 4M8 42h32" />,
 };
 
 const PRODUCTS_HEAD: StageCfg = { d: { x: 0, y: -6, s: 1.2 }, glow: 0.25 };
 const PRODUCTS: StageCfg = { d: { x: 0, y: -0.1, s: 1.3 }, m: { x: 0, y: -9, s: 0.5 }, glow: 0.95 };
-const AZM: StageCfg = { d: { x: -1.9, y: 0.05, s: 1.05 }, m: { x: 0, y: -1.2, s: 0.55 }, light: "#E0B062", glow: 0.95 };
+const APP: StageCfg = { d: { x: 2.1, y: 0.05, s: 0.95 }, m: { x: 0, y: -9, s: 0.5 }, light: "#E0B062", glow: 0.9 };
 const STORE: StageCfg = { d: { x: -2.15, y: -0.2, s: 0.9 }, m: { x: 0, y: -9, s: 0.5 }, glow: 0.85 };
 
 const T = {
   ar: {
-    pLabel: "منتجات RVIOS", pHead: ["أدوات نبنيها", "ونشغّلها بأنفسنا."],
-    pLead: "إلى جانب مشاريع عملائنا، نبني منتجاتنا الخاصة للتجارة وإدارة الأعمال، ونطوّرها كل يوم.",
+    pLabel: "منظومة RVIOS للتجارة", pHead: ["متجرك، تطبيقك،", "ولوحتك — منظومة واحدة."],
+    pLead: "منصة متاجر وتطبيق جوال ولوحة تحكم تعمل معًا: ما تغيّره في واحد يظهر في الكل، وطلباتك تصلك أينما كنت.",
     sHead: ["متجرك جاهز", "قبل أن تبرد قهوتك."],
     sLead: "أنشئ متجرك الإلكتروني بنفسك على RVIOS StoreOS، أدِر منتجاتك وطلباتك من مكان واحد، واستقبل الطلبات مباشرة عبر واتساب.",
     sPoints: ["رابط خاص لمتجرك، ويمكن ربط نطاقك", "باقة مجانية حتى 10 منتجات", "الشعار والألوان والتصنيفات بيدك"],
     sCta: "اكتشف RVIOS StoreOS",
-    aHead: ["عملك ومتجرك،", "في نظام واحد."],
-    aLead: "الطلب الذي يصل من متجرك يُخصم من المخزون، ويُسجَّل في المالية، ويظهر في ملف العميل تلقائياً. بلا إدخال مكرر ولا جداول متفرقة.",
-    aCta: "استكشف RVIOS OS",
+    aHead: ["متجرك كله", "في جيبك."],
+    aLead: "تطبيق RVIOS: افتح متجرك من جوالك، واختر قالبه بمعاينة حية بشكل الجوال والمتصفح، وصمّمه بلمساتك، وتابع كل طلب لحظة وصوله.",
+    aPoints: ["معاينة حية للقوالب الثمانية عشر", "تصميم المتجر وصور المنتجات من الجوال", "إشعار فوري مع كل طلب جديد", "الباقات والدفع بالكريمي وجيب وجوالي"],
+    aCta: "حمّل التطبيق",
     process: "طريقة العمل", processHead: ["من الفكرة", "إلى الإطلاق."],
     blog: "المدونة", blogHead: ["أفكار عن بناء الأعمال رقمياً."], blogAll: "كل المقالات",
   },
   en: {
-    pLabel: "RVIOS products", pHead: ["Tools we build", "and run ourselves."],
-    pLead: "Alongside client work, we build our own products for commerce and business management — and improve them every day.",
+    pLabel: "The RVIOS commerce suite", pHead: ["Your store, your app,", "your dashboard — one suite."],
+    pLead: "A store platform, a mobile app and a dashboard that work as one: change it in one place, see it everywhere, and get orders wherever you are.",
     sHead: ["Your store is live", "before your coffee cools."],
     sLead: "Build your online store yourself on RVIOS StoreOS, manage products and orders in one place, and receive orders straight to WhatsApp.",
     sPoints: ["Your own store link, with custom domains", "Free plan for up to 10 products", "Your logo, colours and categories"],
     sCta: "Discover RVIOS StoreOS",
-    aHead: ["Your business and store,", "in one system."],
-    aLead: "An order from your store is deducted from inventory, booked in finance and added to the customer's profile — automatically. No double entry, no scattered spreadsheets.",
-    aCta: "Explore RVIOS OS",
+    aHead: ["Your whole store", "in your pocket."],
+    aLead: "The RVIOS app: open your store from your phone, pick its template with a live phone and desktop preview, design it your way, and follow every order the moment it arrives.",
+    aPoints: ["Live preview of all 18 templates", "Store design and product photos from your phone", "Instant alert for every new order", "Plans and local payments built in"],
+    aCta: "Get the app",
     process: "How we work", processHead: ["From idea", "to launch."],
     blog: "Journal", blogHead: ["Ideas on building businesses digitally."], blogAll: "All articles",
   },
@@ -58,7 +60,7 @@ export function Products() {
   const t = T[lang];
   const { products } = content(lang);
   const store = products.find((p) => p.slug === "storeos")!;
-  const azm = products.find((p) => p.slug === "azmsmart")!;
+  const app = products.find((p) => p.slug === "app")!;
   return (
     <>
       <Scene id="products" cfg={PRODUCTS_HEAD} className="px-[var(--pad)] pt-[clamp(120px,20vh,220px)]">
@@ -82,7 +84,7 @@ export function Products() {
         </Rise>
       </Scene>
 
-      {/* RVIOS StoreOS أولاً ثم RVIOS OS */}
+      {/* المنصة ثم التطبيق */}
       <Scene id="storeos" cfg={STORE} className="px-[var(--pad)] py-[clamp(90px,14vh,160px)]">
         <div className="mx-auto grid max-w-[1480px] items-center gap-14 lg:grid-cols-[1.1fr_1fr]">
           <div>
@@ -102,15 +104,22 @@ export function Products() {
         </div>
       </Scene>
 
-      <Scene id="azmsmart" cfg={AZM} className="px-[var(--pad)] py-[clamp(90px,14vh,160px)]">
-        <div className="mx-auto grid max-w-[1480px] items-center gap-14 lg:grid-cols-[1fr_1.2fr]">
+      <Scene id="app" cfg={APP} className="px-[var(--pad)] py-[clamp(90px,14vh,160px)]">
+        <div className="mx-auto grid max-w-[1480px] items-center gap-14 lg:grid-cols-[1fr_1.15fr]">
           <div>
-            <span className="label latin">{azm.name}</span>
+            <span className="label">{app.name}</span>
             <Lines className="h2 mt-6" lines={t.aHead} />
-            <Rise><p data-rise className="lead mt-6 max-w-[42ch] text-mist">{t.aLead}</p>
-              <L data-rise href={AZMSMART_URL} className="btn btn-gold mt-9">{t.aCta}</L></Rise>
+            <Rise>
+              <p data-rise className="lead mt-6 max-w-[42ch] text-mist">{t.aLead}</p>
+              <ul data-rise className="mt-8 grid gap-3 text-[15px]">
+                {t.aPoints.map((f) => (
+                  <li key={f} className="flex items-baseline gap-4"><i className="h-1.5 w-1.5 flex-none rounded-full bg-gold" />{f}</li>
+                ))}
+              </ul>
+              <L data-rise href={app.href} className="btn btn-gold mt-9">{t.aCta}</L>
+            </Rise>
           </div>
-          <Dashboard />
+          <AppShowcase />
         </div>
       </Scene>
     </>

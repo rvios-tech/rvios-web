@@ -17,6 +17,41 @@ const W = "/work";
 
 export const projects: Project[] = [
   {
+    slug: "rvios-app",
+    name: "RVIOS App",
+    latin: "RVIOS for Android",
+    client: "An RVIOS product",
+    location: "Yemen, Saudi Arabia & the Gulf",
+    year: "2026",
+    tags: ["Mobile app", "Flutter", "Online stores"],
+    categories: ["software", "store"],
+    mat: "#120B0A",
+    dark: true,
+    accent: "#E0B062",
+    cover: `${W}/rvios-app/cover.webp`,
+    coverUrl: "store.rvios.com/app",
+    summary:
+      "The merchant app for RVIOS Store: open a store from your phone, pick its template with a live preview, design it, add products with photos, and follow every order as it arrives.",
+    challenge:
+      "Merchants in the region run their business from a phone, not a desktop. The web dashboard was complete, but creating and designing a store and following orders needed a big screen — so replies to customers were slow and sales were lost.",
+    approach:
+      "We built an app that carries the whole platform: a four-step “open your store” wizard with a live preview of every template in a phone or browser frame, plans and local payments with a ready WhatsApp message to the team, a design studio that shows the live store above identity, announcement and policy tools, a product editor that shrinks photos to WebP before upload, and an instant alert for every order — with illustrated guides on every screen.",
+    deliverables: [
+      "“Open your store” wizard with live template preview",
+      "Design studio with phone and desktop preview",
+      "Products with photos from gallery or camera",
+      "Plans, payment and receipt upload",
+      "Instant order alerts (FCM)",
+      "Animated RVIOS identity and illustrated guides",
+    ],
+    url: "https://store.rvios.com/app",
+    blocks: [
+      { t: "phones", srcs: [`${W}/rvios-app/welcome.webp`, `${W}/rvios-app/home.webp`, `${W}/rvios-app/orders.webp`, `${W}/rvios-app/products.webp`], caption: "Welcome, store dashboard, orders and products" },
+      { t: "phones", srcs: [`${W}/rvios-app/wizard.webp`, `${W}/rvios-app/templates.webp`, `${W}/rvios-app/preview.webp`, `${W}/rvios-app/plans.webp`], caption: "Open your store: the template with a live preview, then the plan" },
+      { t: "phones", srcs: [`${W}/rvios-app/design.webp`, `${W}/rvios-app/desktop.webp`, `${W}/rvios-app/business.webp`, `${W}/rvios-app/pay.webp`], caption: "The design studio with phone and desktop preview, business and payments" },
+    ],
+  },
+  {
     slug: "rvios-store",
     name: "RVIOS Store",
     latin: "E-commerce platform",
@@ -31,7 +66,7 @@ export const projects: Project[] = [
     cover: `${W}/rvios-store/home.webp`,
     coverUrl: "store.rvios.com",
     summary:
-      "A platform that gives a merchant a complete online store in minutes: pick a template that suits the products, share one link, and receive orders neatly in the RVIOS OS dashboard.",
+      "A platform that gives a merchant a complete online store in minutes: pick a template that suits the products, share one link, and receive orders neatly in the dashboard and the RVIOS app.",
     challenge:
       "Most merchants in the region sell over WhatsApp and Instagram: scattered photos, prices retyped in every chat, and orders lost between messages. Global platforms are expensive and don't support local payment or Arabic properly.",
     approach:
@@ -42,7 +77,7 @@ export const projects: Project[] = [
       "Cart and orders saved before WhatsApp",
       "Local transfer payment with receipt",
       "Real reviews from buyers",
-      "Fully connected to the RVIOS OS dashboard",
+      "Fully run from the RVIOS app and dashboard",
     ],
     url: "https://store.rvios.com",
     blocks: [

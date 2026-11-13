@@ -10,7 +10,9 @@ export type Block =
   | { t: "pages"; srcs: string[]; caption?: string }
   | { t: "logo"; src: string; caption?: string; bg: string }
   /** الموقع على الحاسوب وبجانبه الجوال — للمنصات والمتاجر */
-  | { t: "devices"; desk: string; mobile: string; url: string; caption?: string; light?: boolean };
+  | { t: "devices"; desk: string; mobile: string; url: string; caption?: string; light?: boolean }
+  /** لقطات تطبيق جوال في إطارات هواتف */
+  | { t: "phones"; srcs: string[]; caption?: string };
 
 export type Category = "web" | "store" | "identity" | "software";
 export const categoryLabels: Record<Category | "all", string> = {
@@ -52,6 +54,41 @@ const W = "/work";
 
 export const projects: Project[] = [
   {
+    slug: "rvios-app",
+    name: "تطبيق RVIOS",
+    latin: "RVIOS for Android",
+    client: "منتج من RVIOS",
+    location: "اليمن والسعودية والخليج",
+    year: "2026",
+    tags: ["تطبيق جوال", "Flutter", "متاجر إلكترونية"],
+    categories: ["software", "store"],
+    mat: "#120B0A",
+    dark: true,
+    accent: "#E0B062",
+    cover: `${W}/rvios-app/cover.webp`,
+    coverUrl: "store.rvios.com/app",
+    summary:
+      "تطبيق التاجر على منصة RVIOS Store: يفتح متجره من جواله، ويختار قالبه بمعاينة حية، ويصمّمه، ويضيف منتجاته بصورها، ويتابع كل طلب لحظة وصوله.",
+    challenge:
+      "التاجر في المنطقة يدير عمله من هاتفه لا من حاسوب. كانت لوحة التحكم على الويب كاملة، لكن إنشاء المتجر وتصميمه ومتابعة الطلبات تحتاج شاشة كبيرة — فيتأخر الرد على العميل ويضيع البيع.",
+    approach:
+      "بنينا تطبيقًا يحمل المنصة كلها: معالج «افتح متجرك» بأربع خطوات مع معاينة حية لكل قالب داخل إطار جوال أو متصفح، والباقات والدفع بالكريمي وجيب وجوالي مع رسالة جاهزة إلى الفريق على واتساب، واستوديو تصميم يعرض المتجر حيًّا فوق أدوات الهوية والإعلان والسياسات، ومحرر منتجات يصغّر الصور ويحوّلها WebP قبل الرفع، وإشعار فوري مع كل طلب. ونوافذ إرشاد مصوّرة تقود التاجر في كل شاشة أول مرة.",
+    deliverables: [
+      "معالج «افتح متجرك» بمعاينة حية للقوالب",
+      "استوديو تصميم بمعاينة جوال ومتصفح",
+      "منتجات بصورها من المعرض أو الكاميرا",
+      "الباقات والدفع ورفع الإيصال",
+      "إشعار فوري لكل طلب (FCM)",
+      "هوية ريفيوس المتحرّكة وإرشادات مصوّرة",
+    ],
+    url: "https://store.rvios.com/app",
+    blocks: [
+      { t: "phones", srcs: [`${W}/rvios-app/welcome.webp`, `${W}/rvios-app/home.webp`, `${W}/rvios-app/orders.webp`, `${W}/rvios-app/products.webp`], caption: "الترحيب، ولوحة المتجر، والطلبات، والمنتجات" },
+      { t: "phones", srcs: [`${W}/rvios-app/wizard.webp`, `${W}/rvios-app/templates.webp`, `${W}/rvios-app/preview.webp`, `${W}/rvios-app/plans.webp`], caption: "افتح متجرك: القالب بمعاينة حية، ثم الباقة" },
+      { t: "phones", srcs: [`${W}/rvios-app/design.webp`, `${W}/rvios-app/desktop.webp`, `${W}/rvios-app/business.webp`, `${W}/rvios-app/pay.webp`], caption: "استوديو التصميم بمعاينة الجوال والمتصفح، وأعمالي، وطرق الدفع" },
+    ],
+  },
+  {
     slug: "rvios-store",
     name: "RVIOS Store",
     latin: "منصة المتاجر الإلكترونية",
@@ -66,7 +103,7 @@ export const projects: Project[] = [
     cover: `${W}/rvios-store/home.webp`,
     coverUrl: "store.rvios.com",
     summary:
-      "منصة تبني للتاجر متجرًا إلكترونيًا كاملًا في دقائق: يختار قالبًا يليق ببضاعته، ويحصل على رابط واحد يشاركه، وتصله الطلبات منظّمة في لوحة تحكم RVIOS OS.",
+      "منصة تبني للتاجر متجرًا إلكترونيًا كاملًا في دقائق: يختار قالبًا يليق ببضاعته، ويحصل على رابط واحد يشاركه، وتصله الطلبات منظّمة في لوحة التحكم وتطبيق RVIOS.",
     challenge:
       "أغلب التجار في المنطقة يبيعون عبر واتساب وإنستغرام: صور متفرقة، وأسعار تُكتب في كل محادثة، وطلبات تضيع بين الرسائل. والمنصات العالمية مكلفة، ولا تدعم الدفع المحلي ولا العربية كما ينبغي.",
     approach:
@@ -77,7 +114,7 @@ export const projects: Project[] = [
       "سلة وطلبات تُحفظ قبل واتساب",
       "دفع بالتحويل المحلي مع إيصال",
       "تقييمات حقيقية من المشترين",
-      "ربط كامل بلوحة تحكم RVIOS OS",
+      "يُدار كاملًا من تطبيق RVIOS ولوحة التحكم",
     ],
     url: "https://store.rvios.com",
     blocks: [

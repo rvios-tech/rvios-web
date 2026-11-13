@@ -59,7 +59,8 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       { source: "/:lang(ar|en)/storeos", destination: STOREOS_URL, permanent: false },
-      { source: "/:lang(ar|en)/azmsmart", destination: AZMSMART_URL, permanent: false },
+      { source: "/:lang(ar|en)/azmsmart", destination: STOREOS_URL, permanent: true },
+      { source: "/:lang(ar|en)/app", destination: `${STOREOS_URL}/app`, permanent: false },
       // صفحة دراسة حالة RVIOS OS حُذفت — النظام صار RVIOS OS وصفحته الترحيبية فيه
       { source: "/:lang(ar|en)/work/azmsmart", destination: "/:lang/work", permanent: true },
     ];

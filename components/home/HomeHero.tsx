@@ -23,7 +23,7 @@ const T = {
     caps: [
       { t: "المواقع الإلكترونية", d: "مواقع تمثّل علامتك وتعمل كأداة حقيقية لعملك." },
       { t: "متاجر RVIOS StoreOS", d: "متجرك جاهز في دقائق، وطلباتك تصل عبر واتساب." },
-      { t: "أنظمة ولوحات تحكم", d: "RVIOS OS — المبيعات والمخزون والمالية في لوحة واحدة." },
+      { t: "تطبيق RVIOS", d: "متجرك كله في جيبك — التصميم والطلبات والإشعارات." },
     ],
   },
   en: {
@@ -38,7 +38,7 @@ const T = {
     caps: [
       { t: "Websites", d: "Sites that represent your brand and work as real business tools." },
       { t: "Stores on RVIOS StoreOS", d: "Your store live in minutes, with orders arriving on WhatsApp." },
-      { t: "Systems & dashboards", d: "RVIOS OS — sales, inventory and finance in one dashboard." },
+      { t: "The RVIOS app", d: "Your whole store in your pocket — design, orders and alerts." },
     ],
   },
 };

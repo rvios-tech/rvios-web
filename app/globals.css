@@ -256,6 +256,22 @@ html[lang="en"] { --display: var(--font-yapari), system-ui, sans-serif; --headin
   .phone { width: min(280px, 70vw); aspect-ratio: 9 / 18.6; background: #0b0b0b; padding: 9px; border-radius: 44px; box-shadow: 0 0 0 1px rgba(250, 248, 237, 0.14), inset 0 0 0 2px #1d1c1c, 0 60px 120px -40px var(--shadow); will-change: transform; }
   .scr { height: 100%; border-radius: 36px; overflow: hidden; background: #FFFDF6; color: #171717; display: flex; flex-direction: column; font-size: 12px; line-height: 1.5; }
 
+  /* ——— تطبيق RVIOS: ثلاثة هواتف متراكبة ——— */
+  .app-show { display: grid; justify-items: center; gap: 28px; }
+  .app-stack { position: relative; width: min(560px, 92vw); height: clamp(460px, 62vw, 620px); perspective: 1400px; will-change: transform; }
+  .app-phone { position: absolute; top: 50%; left: 50%; width: clamp(200px, 30vw, 290px); aspect-ratio: 1080 / 2400; background: #0b0b0b; padding: 8px; border-radius: 40px; box-shadow: 0 0 0 1px rgba(250, 248, 237, 0.14), inset 0 0 0 2px #1d1c1c, 0 60px 120px -40px var(--shadow); transition: transform 0.9s var(--ease-out), opacity 0.9s var(--ease-out), filter 0.9s; }
+  .app-phone.front { transform: translate(-50%, -50%); z-index: 3; }
+  .app-phone.side { opacity: 0.55; filter: saturate(0.7) brightness(0.8); z-index: 1; }
+  .app-phone.side.left { transform: translate(-112%, -46%) rotate(-8deg) scale(0.84); }
+  .app-phone.side.right { transform: translate(12%, -46%) rotate(8deg) scale(0.84); }
+  .app-screen { position: relative; height: 100%; border-radius: 32px; overflow: hidden; background: #F6F2EA; }
+  .app-shot { object-fit: cover; object-position: top; animation: app-in 0.7s var(--ease-out); }
+  @keyframes app-in { from { opacity: 0; transform: scale(1.04); } to { opacity: 1; transform: none; } }
+  .app-dots { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
+  .app-dots button { padding: 7px 14px; border-radius: 99px; font-size: 13px; color: var(--mist, rgba(250,248,237,.6)); border: 1px solid rgba(250, 248, 237, 0.14); transition: all 0.4s var(--ease-out); }
+  .app-dots button.on { color: #171717; background: var(--color-gold); border-color: transparent; }
+  @media (max-width: 640px) { .app-phone.side { display: none; } .app-stack { height: auto; aspect-ratio: 1080 / 2400; width: 64vw; } .app-phone.front { width: 100%; } }
+
   /* ——— نص المقال ——— */
   .prose-ar { font-size: 19px; line-height: 2.05; }
   html[lang="en"] .prose-ar { font-size: 19px; line-height: 1.75; }

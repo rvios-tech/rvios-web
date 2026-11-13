@@ -47,7 +47,7 @@ const own: Post[] = [
       { t: "quote", v: "A successful store doesn't sell more only because it looks better — it sells more because buying from it is easier." },
       { t: "h2", id: "launch", v: "5. Launch, then keep improving" },
       { t: "p", v: "Share your store link on your accounts and WhatsApp status, and ask your first customers for a real review — reviews from actual buyers are the best free advertising. Then watch your reports: which product gets views but no sales? Improve its photos or price." },
-      { t: "p", v: "On RVIOS StoreOS you choose one of eighteen templates, your store is created instantly with its own link, and orders arrive organised in the RVIOS OS dashboard. Start free and upgrade when you need to." },
+      { t: "p", v: "On RVIOS StoreOS you choose one of eighteen templates, your store is created instantly with its own link, and orders arrive organised in the the RVIOS dashboard dashboard. Start free and upgrade when you need to." },
     ],
   },
   {
@@ -109,7 +109,7 @@ const own: Post[] = [
       { t: "p", v: "Cards, mada and Apple Pay require a payment gateway and a contract with its provider. Worth it when order volume grows and more buyers come from outside your city — but not a requirement to start selling." },
       { t: "list", v: ["Start with at least two options: cash on delivery, and transfer with receipt.", "Write the transfer instructions clearly on the payment page itself.", "Confirm every payment before shipping, and record it on the order.", "Add a gateway once manual confirmation becomes a daily burden."] },
       { t: "quote", v: "Cut the steps between \"I want this\" and \"order placed\" — every extra step loses a customer." },
-      { t: "p", v: "RVIOS StoreOS supports cash on delivery, transfers and wallets with receipt upload reviewed in the RVIOS OS dashboard, with no commission on your sales." },
+      { t: "p", v: "RVIOS StoreOS supports cash on delivery, transfers and wallets with receipt upload reviewed in the the RVIOS dashboard dashboard, with no commission on your sales." },
     ],
   },
   {
@@ -129,7 +129,7 @@ const own: Post[] = [
       { t: "h2", id: "native", v: "When a store app is worth it" },
       { t: "list", v: ["When the business relies on frequent push notifications.", "When it must work offline or on weak networks.", "When it needs the camera, location or biometrics deeply.", "When users open it several times a day."] },
       { t: "quote", v: "Start with what reaches your customer fastest, then add the app when usage — not desire — calls for it." },
-      { t: "p", v: "At RVIOS we build all three: responsive websites, web apps like the RVIOS OS system, and mobile apps like the RVIOS app — and in the first session we help you choose what truly fits your stage." },
+      { t: "p", v: "At RVIOS we build all three: responsive websites, web apps like the RVIOS platform dashboard, and mobile apps like the RVIOS app — and in the first session we help you choose what truly fits your stage." },
     ],
   },
   {
@@ -153,7 +153,7 @@ const own: Post[] = [
       { t: "list", v: ["Connected data: an online order automatically updates inventory, posts to finance, and appears in the customer’s profile.", "A fast start: switch on the modules you need today and add more as you grow.", "An interface your team will actually use, on desktop and mobile.", "Clear permissions for every role instead of one shared password."] },
       { t: "h2", id: "how-to-start", v: "How do you know your company is ready to make the switch?" },
       { t: "p", v: "If your team asks “where’s the latest version of that file?” more than once a week, or you only learn last month’s profit days after it ends, your company has outgrown spreadsheets. Start by mapping your most frequent processes, then choose a system that connects them from day one." },
-      { t: "p", v: "We built RVIOS OS around exactly this idea: an intelligent system that brings sales, inventory, customers, finance, and HR together in one place, for companies and stores that want to be run with clarity." },
+      { t: "p", v: "We built the RVIOS suite around exactly this idea: an intelligent system that brings sales, inventory, customers, finance, and HR together in one place, for companies and stores that want to be run with clarity." },
     ],
   },
   {

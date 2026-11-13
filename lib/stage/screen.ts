@@ -462,7 +462,7 @@ export class ScreenUI {
     this.cursor(t, [[W * 0.55, H * 0.35], [bx, by]], 1.3, 2.4);
   }
 
-  // ——— 3) لوحة RVIOS OS ———
+  // ——— 3) لوحة تحكم المتجر ———
   private drawDash(t: number) {
     const { ctx, W, H, k } = this;
     const P = PAL[this.theme];
@@ -485,7 +485,7 @@ export class ScreenUI {
     ctx.textAlign = rtl ? "right" : "left";
     ctx.fillStyle = P.fg;
     ctx.font = this.f(16, 700);
-    ctx.fillText("RVIOS OS", rtl ? W - 72 * k : 72 * k, top + 42 * k);
+    ctx.fillText("RVIOS Store", rtl ? W - 72 * k : 72 * k, top + 42 * k);
     L.menu.forEach((m, n) => {
       const y = top + (110 + n * 52) * k;
       if (n === 0) {

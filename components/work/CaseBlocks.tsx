@@ -64,6 +64,19 @@ export function CaseBlock({ b, dark }: { b: Block; dark: boolean }) {
           <figcaption><Caption text={b.caption} dark={dark} /></figcaption>
         </figure>
       );
+    case "phones":
+      return (
+        <figure className="mx-auto w-full max-w-[1240px]">
+          <Rise className="grid grid-cols-2 gap-5 md:grid-cols-4 md:gap-8" stagger={0.08}>
+            {b.srcs.map((src, i) => (
+              <div data-rise key={src} className={i % 2 ? "md:translate-y-16" : ""}>
+                <Phone src={src} className="w-full" />
+              </div>
+            ))}
+          </Rise>
+          <figcaption className="md:mt-16"><Caption text={b.caption} dark={dark} /></figcaption>
+        </figure>
+      );
     case "logo":
       return (
         <figure className="mx-auto w-full max-w-[1240px]">
