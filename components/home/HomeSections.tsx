@@ -26,9 +26,9 @@ const STORE: StageCfg = { d: { x: -2.15, y: -0.2, s: 0.9 }, m: { x: 0, y: -9, s:
 
 const T = {
   ar: {
-    pLabel: "منظومة RVIOS للتجارة", pHead: ["متجرك، تطبيقك،", "ولوحتك — منظومة واحدة."],
-    pLead: "منصة متاجر وتطبيق جوال ولوحة تحكم تعمل معًا: ما تغيّره في واحد يظهر في الكل، وطلباتك تصلك أينما كنت.",
-    sHead: ["متجرك جاهز", "قبل أن تبرد قهوتك."],
+    pLabel: "منتجات RVIOS", pHead: ["أدوات نبنيها", "ونشغّلها بأنفسنا."],
+    pLead: "إلى جانب مشاريع عملائنا، نبني منتجاتنا الخاصة للتجارة وإدارة الأعمال، ونطوّرها كل يوم.",
+    sHead: ["متجرك الإلكتروني،", "بتصميم يبيع عنك."],
     sLead: "افتح متجرك على RVIOS Store بقالب من ثمانية عشر قالبًا احترافيًا — لكل قالب هيكله وحركته وإحساسه — برابط خاص ودومين إن شئت، وطلبات تُحفظ ثم تصلك على واتساب وفي تطبيق RVIOS.",
     sPoints: ["رابط خاص فوري، ودومينك على الباقات المدفوعة", "الدفع عند الاستلام والكريمي وجيب وجوالي", "متجرك يُدار من جوالك ومن لوحة التحكم"],
     sStats: [["١٨", "قالبًا احترافيًا"], ["٠٪", "عمولة على مبيعاتك"], ["دقائق", "حتى يعمل متجرك"]],
@@ -43,9 +43,9 @@ const T = {
     blog: "المدونة", blogHead: ["أفكار عن بناء الأعمال رقمياً."], blogAll: "كل المقالات",
   },
   en: {
-    pLabel: "The RVIOS commerce suite", pHead: ["Your store, your app,", "your dashboard — one suite."],
-    pLead: "A store platform, a mobile app and a dashboard that work as one: change it in one place, see it everywhere, and get orders wherever you are.",
-    sHead: ["Your store is live", "before your coffee cools."],
+    pLabel: "RVIOS products", pHead: ["Tools we build", "and run ourselves."],
+    pLead: "Alongside client work, we build our own products for commerce and business management — and improve them every day.",
+    sHead: ["Your online store,", "designed to sell for you."],
     sLead: "Open your store on RVIOS Store with one of eighteen professional templates — each with its own structure, motion and feel — your own link or domain, and orders saved then sent to you on WhatsApp and in the RVIOS app.",
     sPoints: ["Instant store link, your own domain on paid plans", "Cash on delivery and local transfers built in", "Run it from your phone and the dashboard"],
     sStats: [["18", "pro templates"], ["0%", "commission on sales"], ["Minutes", "to go live"]],

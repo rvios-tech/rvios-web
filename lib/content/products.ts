@@ -10,7 +10,7 @@ export type Product = {
   tone: string;
 };
 
-/** منظومة RVIOS للتجارة: المنصة، والتطبيق، والتصميم الخاص — منتج واحد بثلاثة أبواب */
+/** منتجات RVIOS: منصة المتاجر، والتطبيق، والتصميم الخاص */
 export const products: Product[] = [
   {
     slug: "storeos",

@@ -43,14 +43,13 @@ const navLabels = {
   en: { services: "Services", work: "Work", blog: "Journal", contact: "Contact" },
 };
 
-/** روابط الرأس بالترتيب: الخدمات، الأعمال، منصة المتاجر، تطبيق RVIOS، المدونة، تواصل */
+/** روابط الرأس بالترتيب: الخدمات، الأعمال، RVIOS Store، المدونة، تواصل */
 export const navOf = (lang: Lang) => {
   const n = navLabels[lang];
   return [
     { href: "/services", label: n.services },
     { href: "/work", label: n.work },
     { href: STOREOS_URL, label: "RVIOS Store", latin: true },
-    { href: `${STOREOS_URL}/app`, label: lang === "ar" ? "التطبيق" : "App" },
     { href: "/blog", label: n.blog },
     { href: "/contact", label: n.contact },
   ];
